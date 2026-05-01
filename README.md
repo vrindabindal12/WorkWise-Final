@@ -24,6 +24,41 @@ This repository serves as a demonstration of advanced system design, scalable fu
 
 WorkWise was engineered to solve complex state management and asynchronous processing challenges common in AI-heavy applications. The architecture relies on several advanced paradigms to maintain high availability and a seamless user experience.
 
+### System Architecture Diagram
+
+```mermaid
+flowchart TB
+    Client["Client (Next.js/React)"]
+    
+    subgraph "Application Server (Next.js 15)"
+        ServerActions["Server Actions / API"]
+        PrismaClient["Prisma Client"]
+        InngestAPI["Inngest Workers"]
+    end
+    
+    subgraph "External Providers"
+        Clerk["Clerk (Authentication)"]
+        Gemini["Google Gemini (LLM)"]
+        InngestCloud["Inngest Cloud (Broker)"]
+    end
+    
+    DB[("PostgreSQL Database")]
+    
+    Client -- "JWT / Session" --> Clerk
+    Client -- "Server Actions" --> ServerActions
+    Client -- "WebRTC Signaling" --> Client
+    
+    ServerActions -- "Event Dispatch" --> InngestCloud
+    InngestCloud -- "Trigger Job Execution" --> InngestAPI
+    
+    ServerActions -- "Sync Queries" --> PrismaClient
+    InngestAPI -- "Async Data Mutates" --> PrismaClient
+    PrismaClient -- "TCP/IP" --> DB
+    
+    ServerActions -- "Streaming AI Prompts" --> Gemini
+    InngestAPI -- "Heavy Context Generation" --> Gemini
+```
+
 ### 1. LLM Orchestration & Contextual Synthesis
 The platform integrates **Google Generative AI (Gemini)** to power a contextual career mentor and a dynamic cover letter generator. Rather than simple API wrappers, the system aggregates user telemetry (skills, JSON-structured assessment histories, and industry data) to construct highly specific prompt contexts, ensuring deterministic and highly relevant AI outputs.
 
