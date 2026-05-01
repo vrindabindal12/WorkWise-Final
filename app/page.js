@@ -167,11 +167,11 @@ export default function LandingPage() {
             className="text-4xl md:text-5xl lg:text-6xl text-white tracking-tight whitespace-nowrap mb-3 mt-4"
             style={{ fontFamily: "'Instrument Serif', serif" }}
           >
-            Where <em className="italic font-normal text-white/70">careers</em> rise through <em className="italic font-normal text-white/70">clarity.</em>
+            Where <em className="italic font-normal text-white/70">careers</em> rise through <em className="italic font-normal text-white/70">intelligence.</em>
           </h1>
           
           <p className="text-white/60 text-base md:text-lg max-w-2xl mx-auto leading-relaxed">
-            We build intelligent spaces that eliminate digital noise, bringing radical clarity to your workflow and accelerating your execution.
+            We provide an AI-native career platform that eliminates guesswork, bringing radical clarity to your job search and accelerating your professional growth.
           </p>
         </main>
 

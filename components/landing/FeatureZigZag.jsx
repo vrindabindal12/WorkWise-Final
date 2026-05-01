@@ -6,9 +6,9 @@ import { Layers, Users } from "lucide-react";
 export default function FeatureZigZag() {
   const features = [
     {
-      title: "Intelligent Organization",
-      subtitle: "Workspace",
-      description: "We provide intuitive systems that categorize your projects, surface what matters most, and keep your daily workflow completely friction-free. Master your workflow with absolute clarity.",
+      title: "Data-Driven Industry Insights",
+      subtitle: "Analytics",
+      description: "Stop guessing. We aggregate real-time market data to provide salary medians, growth rates, and top skills needed for your specific sub-industry. Make calculated career moves based on hard data.",
       icon: <Layers className="w-5 h-5 text-white" />,
       imageAlign: "left",
       visual: (
@@ -30,9 +30,9 @@ export default function FeatureZigZag() {
       )
     },
     {
-      title: "Seamless Connection",
-      subtitle: "Collaboration",
-      description: "From brainstorming to execution, we bring your team together in a unified space where ideas flow effortlessly and real work gets done. Drive your collective career forward.",
+      title: "Context-Aware Cover Letters",
+      subtitle: "AI Generation",
+      description: "Don't start from scratch. Our AI synthesizes your profile with specific job descriptions to instantly generate highly targeted, personalized cover letters that drastically reduce application friction.",
       icon: <Users className="w-5 h-5 text-white" />,
       imageAlign: "right",
       visual: (
@@ -64,10 +64,10 @@ export default function FeatureZigZag() {
             <span className="text-white/60 text-xs font-medium tracking-widest uppercase">Features</span>
           </div>
           <h2 className="text-4xl md:text-5xl text-white tracking-tight mb-6">
-            How we empower you
+            Engineered for growth
           </h2>
           <p className="text-white/50 text-base md:text-lg">
-            Everything you need to master your focus, connect with your team, and accelerate your vision.
+            Complex data synthesis and generative AI, packaged into an intuitive platform to accelerate your career trajectory.
           </p>
         </div>
 

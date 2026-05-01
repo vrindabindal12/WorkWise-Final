@@ -7,18 +7,18 @@ export default function FeaturesGridSection() {
   const cards = [
     {
       icon: <Target className="w-5 h-5 text-white" />,
-      title: "Absolute Focus",
-      description: "We design spaces that actively eliminate digital noise, allowing you to enter deep work states faster and stay there longer."
+      title: "AI-Powered Mentor",
+      description: "Receive contextual career coaching powered by Google Gemini. Our mentor dynamically analyzes your industry and goals to deliver tailored advice."
     },
     {
       icon: <Zap className="w-5 h-5 text-white" />,
-      title: "Unmatched Velocity",
-      description: "Move from idea to execution without friction. Our tools are optimized for speed, ensuring your workflow never breaks."
+      title: "Smart ATS Resumes",
+      description: "Build algorithmic, ATS-optimized resumes with real-time compatibility scoring. Generate pixel-perfect PDFs to stand out to recruiters instantly."
     },
     {
       icon: <Sparkles className="w-5 h-5 text-white" />,
-      title: "Radical Clarity",
-      description: "Turn overwhelming chaos into actionable steps. We surface what matters most so you always know exactly what to do next."
+      title: "Real-Time Interviews",
+      description: "Simulate high-pressure environments with our WebRTC interview preparation module, tracking your assessment scores dynamically."
     }
   ];
 

@@ -6,24 +6,20 @@ import { Plus, Minus } from "lucide-react";
 
 const faqs = [
   {
-    question: "How is WorkWise different from other productivity tools?",
-    answer: "WorkWise isn't just about managing tasks; it's an intelligent ecosystem designed to eliminate friction. We focus on deep work, radical clarity, and seamless collaboration, ensuring you spend less time organizing and more time executing."
+    question: "How does the AI Mentor personalize its advice?",
+    answer: "The Google Gemini-powered mentor aggregates your profile data, assessment histories, and industry insights to construct a highly specific context window. This ensures every piece of advice is deterministic, actionable, and tailored exactly to your career trajectory."
   },
   {
-    question: "Can I use WorkWise for personal projects?",
-    answer: "Absolutely. Our Starter plan is perfectly tailored for individuals looking to master their personal workflow, track their career growth, and maintain absolute focus on what matters most."
+    question: "Are the generated resumes ATS-friendly?",
+    answer: "Absolutely. Our smart resume builder uses custom parsing algorithms to ensure your document structurally aligns with Applicant Tracking Systems. We also provide real-time compatibility scores to optimize your keywords before you export to PDF."
   },
   {
-    question: "How secure is my data on the platform?",
-    answer: "We employ enterprise-grade encryption for all data at rest and in transit. Your privacy and security are foundational to our architecture, ensuring your intellectual property remains strictly yours."
+    question: "How do the mock interviews work?",
+    answer: "We utilize PeerJS and WebRTC technology to establish low-latency, real-time peer-to-peer connections. This allows you to simulate high-pressure, live interview environments directly in your browser without any server bottlenecks."
   },
   {
-    question: "Does WorkWise integrate with other tools I use?",
-    answer: "Yes, our Professional and Enterprise plans offer robust custom API integrations. We are continually expanding our native integrations to ensure your workflow remains uninterrupted."
-  },
-  {
-    question: "What kind of support do you offer?",
-    answer: "Starter plans include community support, while Professional plans come with priority 24/7 support. Enterprise clients receive a dedicated success manager and SLA guarantees."
+    question: "How secure is my data?",
+    answer: "We take privacy seriously. Your data is secured via Clerk authentication, and all database records are strictly modeled in PostgreSQL via Prisma. We don't train our models on your private data without consent."
   }
 ];
 
@@ -41,7 +37,7 @@ export default function FaqSection() {
             Common <em className="italic text-white/70 font-normal" style={{ fontFamily: "'Instrument Serif', serif" }}>questions.</em>
           </h2>
           <p className="text-white/50 text-base md:text-lg max-w-xl mx-auto leading-relaxed">
-            Everything you need to know about WorkWise and how we can accelerate your workflow.
+            Everything you need to know about WorkWise and how our AI architecture accelerates your career.
           </p>
         </div>
 
