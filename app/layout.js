@@ -3,6 +3,7 @@ import "./globals.css";
 import { ClerkProvider } from "@clerk/nextjs";
 import { Toaster } from "sonner";
 import Header from "../components/header";
+import Footer from "../components/footer";
 import { ThemeProvider } from "../components/theme-provider";
 import { dark } from "@clerk/themes";
 import { checkUser } from "../lib/checkUser"; // Import checkUser here
@@ -34,11 +35,7 @@ export default async function RootLayout({ children }) {
             <Header user={user} /> {/* Pass user data to Header */}
             <main className="min-h-screen">{children}</main>
             <Toaster richColors theme="dark" />
-            <footer className="bg-[#1a1a1a] py-12">
-              <div className="container mx-auto px-4 text-center text-gray-400">
-                <p>Made with 💗 by Kuch Bhi</p>
-              </div>
-            </footer>
+            <Footer />
           </ThemeProvider>
         </body>
       </ClerkProvider>

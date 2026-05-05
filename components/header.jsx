@@ -11,6 +11,7 @@ import {
   StarsIcon,
 } from "lucide-react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { SignedIn, SignedOut, SignInButton, UserButton } from "@clerk/nextjs";
 import {
   DropdownMenu,
@@ -21,6 +22,10 @@ import {
 
 
 const Header = ({ user }) => {
+  const pathname = usePathname();
+
+  if (pathname === "/") return null;
+
   return (
     <>
       <header className="fixed top-0 w-full border-b bg-background/80 backdrop-blur-md z-50 supports-[backdrop-filter]:bg-background/60">

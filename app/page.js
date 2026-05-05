@@ -1,212 +1,108 @@
+"use client";
+
 import React from "react";
 import Link from "next/link";
-import { Button } from "../components/ui/button";
-import { Card, CardContent } from "../components/ui/card";
-import {
-  ArrowRight,
-  Trophy,
-  Target,
-  Sparkles,
-  CheckCircle2,
-} from "lucide-react";
-import HeroSection from "../components/hero";
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from "../components/ui/accordion";
-import Image from "next/image";
-import { features } from "../data/features";
-import { testimonial } from "../data/testimonial";
-import { faqs } from "../data/faqs";
-import { howItWorks } from "../data/howItWorks";
+import { SignedIn, SignedOut, SignInButton } from "@clerk/nextjs";
 
 export default function LandingPage() {
   return (
-    <>
-      <div className="grid-background"></div>
+    <div className="relative min-h-screen w-full overflow-hidden bg-background text-foreground flex flex-col justify-between">
+      {/* Fullscreen Video Background */}
+      <video
+        autoPlay
+        loop
+        muted
+        playsInline
+        className="absolute inset-0 w-full h-full object-cover z-0"
+      >
+        <source
+          src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260314_131748_f2ca2a28-fed7-44c8-b9a9-bd9acdd5ec31.mp4"
+          type="video/mp4"
+        />
+      </video>
+
+      {/* Navigation Bar */}
+      <header className="relative z-10 w-full">
+        <nav className="flex flex-row justify-between items-center px-8 py-6 max-w-7xl mx-auto">
+          {/* Logo */}
+          <Link href="/" className="text-3xl tracking-tight text-foreground" style={{ fontFamily: "'Instrument Serif', serif" }}>
+            Velorah<sup className="text-xs">®</sup>
+          </Link>
+
+          {/* Nav Links */}
+          <div className="hidden md:flex items-center space-x-8">
+            <Link href="/" className="text-sm text-foreground transition-colors font-medium">
+              Home
+            </Link>
+            <a href="#studio" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
+              Studio
+            </a>
+            <a href="#about" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
+              About
+            </a>
+            <a href="#journal" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
+              Journal
+            </a>
+            <a href="#reach-us" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
+              Reach Us
+            </a>
+          </div>
+
+          {/* CTA Button */}
+          <div>
+            <SignedOut>
+              <SignInButton mode="modal">
+                <button className="liquid-glass rounded-full px-6 py-2.5 text-sm text-foreground hover:scale-[1.03] transition-transform duration-200 cursor-pointer">
+                  Begin Journey
+                </button>
+              </SignInButton>
+            </SignedOut>
+            <SignedIn>
+              <Link href="/dashboard">
+                <button className="liquid-glass rounded-full px-6 py-2.5 text-sm text-foreground hover:scale-[1.03] transition-transform duration-200 cursor-pointer">
+                  Begin Journey
+                </button>
+              </Link>
+            </SignedIn>
+          </div>
+        </nav>
+      </header>
 
       {/* Hero Section */}
-      <HeroSection />
+      <main className="relative z-10 flex-1 flex flex-col items-center justify-center text-center px-6 pt-32 pb-40 py-[90px] max-w-7xl mx-auto w-full">
+        <h1
+          className="text-5xl sm:text-7xl md:text-8xl leading-[0.95] tracking-[-2.46px] max-w-7xl font-normal text-foreground animate-fade-rise"
+          style={{ fontFamily: "'Instrument Serif', serif" }}
+        >
+          Where <em className="not-italic text-muted-foreground">dreams</em> rise <br className="hidden sm:inline" />
+          <em className="not-italic text-muted-foreground">through the silence.</em>
+        </h1>
 
-      {/* Features Section */}
-      <section className="w-full py-12 md:py-24 lg:py-32 bg-background">
-        <div className="container mx-auto px-4 md:px-6">
-          <h2 className="text-3xl font-bold tracking-tighter text-center mb-12">
-            Powerful Features for Your Career Growth
-          </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
-            {features.map((feature, index) => (
-              <Card
-                key={index}
-                className="border-2  hover:border-primary hover:scale-110 ease-in-out transition-all  duration-300"
-              >
-                <CardContent className="pt-6 text-center flex flex-col items-center">
-                  <div className="flex flex-col items-center justify-center">
-                    {feature.icon}
-                    <h3 className="text-xl font-bold mb-2">{feature.title}</h3>
-                    <p className="text-muted-foreground">
-                      {feature.description}
-                    </p>
-                  </div>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        </div>
-      </section>
+        <p className="text-muted-foreground text-base sm:text-lg max-w-2xl mt-8 leading-relaxed animate-fade-rise-delay">
+          We&apos;re designing tools for deep thinkers, bold creators, and quiet rebels.
+          Amid the chaos, we build digital spaces for sharp focus and inspired work.
+        </p>
 
-      {/* Stats Section */}
-      <section className="w-full py-12 md:py-24 bg-muted/50">
-        <div className="container mx-auto px-4 md:px-6">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 max-w-4xl mx-auto text-center">
-            <div className="flex flex-col items-center justify-center space-y-2">
-              <h3 className="text-4xl font-bold">50+</h3>
-              <p className="text-muted-foreground">Industries Covered</p>
-            </div>
-            <div className="flex flex-col items-center justify-center space-y-2">
-              <h3 className="text-4xl font-bold">1000+</h3>
-              <p className="text-muted-foreground">Interview Questions</p>
-            </div>
-            <div className="flex flex-col items-center justify-center space-y-2">
-              <h3 className="text-4xl font-bold">95%</h3>
-              <p className="text-muted-foreground">Success Rate</p>
-            </div>
-            <div className="flex flex-col items-center justify-center space-y-2">
-              <h3 className="text-4xl font-bold">24/7</h3>
-              <p className="text-muted-foreground">AI Support</p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* How It Works Section */}
-      <section className="w-full py-12 md:py-24 bg-background">
-        <div className="container mx-auto px-4 md:px-6">
-          <div className="text-center max-w-3xl mx-auto mb-12">
-            <h2 className="text-3xl font-bold mb-4">How It Works</h2>
-            <p className="text-muted-foreground">
-              Four simple steps to accelerate your career growth
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-6xl mx-auto">
-            {howItWorks.map((item, index) => (
-              <div
-                key={index}
-                className="flex flex-col items-center hover:scale-110 ease-in-out transition-all  duration-300 border-2 p-2 rounded-md py-8 text-center space-y-4"
-              >
-                <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center">
-                  {item.icon}
-                </div>
-                <h3 className="font-semibold text-xl">{item.title}</h3>
-                <p className="text-muted-foreground">{item.description}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="w-full py-12 md:py-24 bg-muted/50">
-        <div className="container mx-auto px-4 md:px-6">
-          <h2 className="text-3xl font-bold text-center mb-12">
-            What Our Users Say
-          </h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-            {testimonial.map((testimonial, index) => (
-              <Card key={index} className="bg-background hover:scale-110 ease-in-out transition-all  duration-300">
-                <CardContent className="pt-6">
-                  <div className="flex flex-col space-y-4">
-                    <div className="flex items-center space-x-4 mb-4">
-                      <div className="relative h-12 w-12 flex-shrink-0">
-                        <Image
-                          width={40}
-                          height={40}
-                          src={testimonial.image}
-                          alt={testimonial.author}
-                          className="rounded-full object-cover border-2 border-primary/20"
-                        />
-                      </div>
-                      <div>
-                        <p className="font-semibold">{testimonial.author}</p>
-                        <p className="text-sm text-muted-foreground">
-                          {testimonial.role}
-                        </p>
-                        <p className="text-sm text-primary">
-                          {testimonial.company}
-                        </p>
-                      </div>
-                    </div>
-                    <blockquote>
-                      <p className="text-muted-foreground italic relative">
-                        <span className="text-3xl text-primary absolute -top-4 -left-2">
-                          &quot;
-                        </span>
-                        {testimonial.quote}
-                        <span className="text-3xl text-primary absolute -bottom-4">
-                          &quot;
-                        </span>
-                      </p>
-                    </blockquote>
-                  </div>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* FAQ Section */}
-      <section className="w-full py-12 md:py-24">
-        <div className="container mx-auto px-4 md:px-6">
-          <div className="text-center max-w-3xl mx-auto mb-12">
-            <h2 className="text-3xl font-bold mb-4">
-              Frequently Asked Questions
-            </h2>
-            <p className="text-muted-foreground">
-              Find answers to common questions about our platform
-            </p>
-          </div>
-
-          <div className="max-w-3xl mx-auto">
-            <Accordion type="single" collapsible className="w-full">
-              {faqs.map((faq, index) => (
-                <AccordionItem key={index} value={`item-${index}`}>
-                  <AccordionTrigger className="text-left">
-                    {faq.question}
-                  </AccordionTrigger>
-                  <AccordionContent>{faq.answer}</AccordionContent>
-                </AccordionItem>
-              ))}
-            </Accordion>
-          </div>
-        </div>
-      </section>
-
-      {/* CTA Section */}
-      <section className="w-full">
-        <div className="mx-auto py-24 gradient rounded-lg">
-          <div className="flex flex-col items-center justify-center space-y-4 text-center max-w-3xl mx-auto">
-            <h2 className="text-3xl font-bold tracking-tighter text-primary-foreground sm:text-4xl md:text-5xl">
-              Ready to Accelerate Your Career?
-            </h2>
-            <p className="mx-auto max-w-[600px] text-primary-foreground/80 md:text-xl">
-              Join thousands of professionals who are advancing their careers
-              with AI-powered guidance.
-            </p>
-            <Link href="/dashboard" passHref>
-              <Button
-                size="lg"
-                variant="secondary"
-                className="h-11 mt-5 animate-bounce border-2"
-              >
-                Start Your Journey Today <ArrowRight className="ml-2 h-4 w-4" />
-              </Button>
+        <div className="animate-fade-rise-delay-2">
+          <SignedOut>
+            <SignInButton mode="modal">
+              <button className="liquid-glass rounded-full px-14 py-5 text-base text-foreground mt-12 hover:scale-[1.03] transition-transform duration-200 cursor-pointer">
+                Begin Journey
+              </button>
+            </SignInButton>
+          </SignedOut>
+          <SignedIn>
+            <Link href="/dashboard">
+              <button className="liquid-glass rounded-full px-14 py-5 text-base text-foreground mt-12 hover:scale-[1.03] transition-transform duration-200 cursor-pointer">
+                Begin Journey
+              </button>
             </Link>
-          </div>
+          </SignedIn>
         </div>
-      </section>
-    </>
+      </main>
+
+      {/* Spacer to push content to middle */}
+      <div className="h-20 w-full pointer-events-none relative z-10" />
+    </div>
   );
 }
