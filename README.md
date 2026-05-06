@@ -1,36 +1,36 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# WorkWise® Cinematic Platform
 
-## Getting Started
+Welcome to the updated **WorkWise** web application, featuring the custom, cinematic landing page.
 
-First, run the development server:
+## Key Features
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+- **Cinematic Landing Page**: Built with a fullscreen looping background video, glassmorphic navigation, Google Fonts (Instrument Serif and Inter), and custom keyframe rise-fade animations.
+- **Glassmorphic Navigation**: Navigation bar automatically adjusts layout on smaller viewports and features a liquid glass CTA button for authentication.
+- **Clerk Integration**: Fully functional login and sign-up flows using Clerk Auth, redirecting active users directly to their dashboard.
+- **Advanced Tools (Secondary Pages)**: Keep access to resume templates, AI cover letters, mentor chats, and mock interview preparations.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Technical Details
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+- **Framework**: Next.js 15+ (App Router)
+- **Styling**: Tailwind CSS, lucide-react icons, and custom keyframes for premium motion design.
+- **Database**: PostgreSQL with Prisma ORM.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Setup and Running
 
-## Learn More
+1. **Install Dependencies**:
+   ```bash
+   npm install
+   ```
 
-To learn more about Next.js, take a look at the following resources:
+2. **Configure Database & Environment**:
+   Ensure `.env` contains your correct `DATABASE_URL` and Clerk API keys.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+3. **Synchronize Schema**:
+   ```bash
+   npx prisma db push
+   ```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+4. **Run Dev Server**:
+   ```bash
+   npm run dev
+   ```

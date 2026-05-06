@@ -26,7 +26,7 @@ export default function LandingPage() {
         <nav className="flex flex-row justify-between items-center px-8 py-6 max-w-7xl mx-auto">
           {/* Logo */}
           <Link href="/" className="text-3xl tracking-tight text-foreground" style={{ fontFamily: "'Instrument Serif', serif" }}>
-            Velorah<sup className="text-xs">®</sup>
+            WorkWise<sup className="text-xs">®</sup>
           </Link>
 
           {/* Nav Links */}
