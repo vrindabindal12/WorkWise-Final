@@ -74,31 +74,14 @@ export default function LandingPage() {
           className="text-5xl sm:text-7xl md:text-8xl leading-[0.95] tracking-[-2.46px] max-w-7xl font-normal text-foreground animate-fade-rise"
           style={{ fontFamily: "'Instrument Serif', serif" }}
         >
-          Where <em className="not-italic text-muted-foreground">dreams</em> rise <br className="hidden sm:inline" />
-          <em className="not-italic text-muted-foreground">through the silence.</em>
+          Where <em className="not-italic text-muted-foreground">careers</em> rise <br className="hidden sm:inline" />
+          <em className="not-italic text-muted-foreground">through clarity.</em>
         </h1>
 
         <p className="text-muted-foreground text-base sm:text-lg max-w-2xl mt-8 leading-relaxed animate-fade-rise-delay">
-          We&apos;re designing tools for deep thinkers, bold creators, and quiet rebels.
-          Amid the chaos, we build digital spaces for sharp focus and inspired work.
+          We&apos;re building intelligent tools for ambitious minds, bold creators, and quiet rebels.
+          Amid the noise, we design workspaces for resume optimization, interview mastery, and career success.
         </p>
-
-        <div className="animate-fade-rise-delay-2">
-          <SignedOut>
-            <SignInButton mode="modal">
-              <button className="liquid-glass rounded-full px-14 py-5 text-base text-foreground mt-12 hover:scale-[1.03] transition-transform duration-200 cursor-pointer">
-                Begin Journey
-              </button>
-            </SignInButton>
-          </SignedOut>
-          <SignedIn>
-            <Link href="/dashboard">
-              <button className="liquid-glass rounded-full px-14 py-5 text-base text-foreground mt-12 hover:scale-[1.03] transition-transform duration-200 cursor-pointer">
-                Begin Journey
-              </button>
-            </Link>
-          </SignedIn>
-        </div>
       </main>
 
       {/* Spacer to push content to middle */}
