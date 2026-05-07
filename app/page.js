@@ -74,14 +74,14 @@ export default function LandingPage() {
         {/* Hero Content */}
         <main className="relative z-10 flex-1 flex flex-col items-center justify-center text-center px-6 pt-20 pb-56 max-w-7xl mx-auto w-full">
           <h1
-            className="text-5xl sm:text-7xl md:text-8xl leading-[0.95] tracking-[-2.46px] max-w-7xl font-normal text-foreground animate-fade-rise"
+            className="text-[43px] sm:text-[65px] md:text-[86px] leading-[0.95] tracking-[-2.46px] max-w-7xl font-normal text-foreground animate-fade-rise"
             style={{ fontFamily: "'Instrument Serif', serif" }}
           >
             Where <em className="not-italic text-muted-foreground">careers</em> rise <br className="hidden sm:inline" />
             <em className="not-italic text-muted-foreground">through clarity.</em>
           </h1>
 
-          <p className="text-muted-foreground text-base sm:text-lg max-w-2xl mt-8 leading-relaxed animate-fade-rise-delay">
+          <p className="text-sm sm:text-base max-w-2xl mt-8 leading-relaxed animate-fade-rise-delay">
             We&apos;re building intelligent tools for ambitious minds, bold creators, and quiet rebels.
           </p>
         </main>
