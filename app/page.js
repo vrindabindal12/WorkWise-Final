@@ -7,7 +7,7 @@ import { features } from "../data/features";
 
 export default function LandingPage() {
   return (
-    <div className="relative min-h-screen w-full bg-background text-foreground flex flex-col">
+    <div className="relative h-screen overflow-hidden w-full bg-background text-foreground flex flex-col">
       {/* Fullscreen Hero Section */}
       <section className="relative h-screen w-full overflow-hidden flex flex-col justify-between">
         {/* Fullscreen Video Background */}
@@ -81,7 +81,7 @@ export default function LandingPage() {
             <em className="not-italic text-muted-foreground">through clarity.</em>
           </h1>
 
-          <p className="text-sm sm:text-base max-w-2xl mt-8 leading-relaxed animate-fade-rise-delay">
+          <p className="text-sm sm:text-base max-w-2xl mt-1 leading-relaxed animate-fade-rise-delay">
             We&apos;re building intelligent tools for ambitious minds, bold creators, and quiet rebels.
           </p>
         </main>
@@ -90,39 +90,6 @@ export default function LandingPage() {
         <div className="h-20 w-full pointer-events-none relative z-10" />
       </section>
 
-      {/* Features Section */}
-      <section id="features" className="relative z-10 w-full py-24 sm:py-32 bg-background border-t border-border/40">
-        <div className="max-w-7xl mx-auto px-8">
-          <h2
-            className="text-4xl sm:text-5xl md:text-6xl text-center mb-16 font-normal tracking-tight text-foreground"
-            style={{ fontFamily: "'Instrument Serif', serif" }}
-          >
-            Features designed for your professional evolution.
-          </h2>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {features.map((feature, idx) => (
-              <div
-                key={idx}
-                className="liquid-glass rounded-3xl p-8 flex flex-col items-start hover:scale-[1.02] transition-transform duration-300"
-              >
-                <div className="mb-6 p-3 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center">
-                  {feature.icon}
-                </div>
-                <h3
-                  className="text-2xl font-normal mb-3 text-foreground"
-                  style={{ fontFamily: "'Instrument Serif', serif" }}
-                >
-                  {feature.title}
-                </h3>
-                <p className="text-muted-foreground text-sm leading-relaxed">
-                  {feature.description}
-                </p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
     </div>
   );
 }
