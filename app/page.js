@@ -156,12 +156,12 @@ export default function LandingPage() {
         </header>
 
         {/* Hero Content */}
-        <main className="relative z-10 flex-1 flex flex-col items-center justify-center px-6 py-12 text-center">
+        <main className="relative z-10 flex-1 flex flex-col items-center justify-center px-6 py-12 text-center -translate-y-[26%] md:-translate-y-[34%]">
           <h1 
-            className="text-5xl md:text-6xl lg:text-7xl text-white tracking-tight mb-12 mt-4"
+            className="text-5xl md:text-6xl lg:text-7xl text-white tracking-tight whitespace-nowrap mb-12 mt-4"
             style={{ fontFamily: "'Instrument Serif', serif" }}
           >
-            Where <em className="italic font-normal text-white/70">careers</em> rise <br className="hidden md:inline" /> through <em className="italic font-normal text-white/70">clarity.</em>
+            Where <em className="italic font-normal text-white/70">careers</em> rise through <em className="italic font-normal text-white/70">clarity.</em>
           </h1>
 
 
