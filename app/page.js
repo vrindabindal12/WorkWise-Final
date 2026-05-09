@@ -19,7 +19,7 @@ export default function LandingPage() {
     if (!video) return;
 
     let fadeFrame;
-    
+
     // Smooth crossfade to black
     const handleTimeUpdate = () => {
       const remainingTime = video.duration - video.currentTime;
@@ -44,7 +44,7 @@ export default function LandingPage() {
       setTimeout(() => {
         video.currentTime = 0;
         video.play().catch(console.error);
-        
+
         let start;
         const fadeIn = (timestamp) => {
           if (!start) start = timestamp;
@@ -158,31 +158,15 @@ export default function LandingPage() {
         {/* Hero Content */}
         <main className="relative z-10 flex-1 flex flex-col items-center justify-center px-6 py-12 text-center">
           <h1 
-            className="text-6xl md:text-7xl lg:text-8xl text-white tracking-tight whitespace-nowrap mb-12 mt-4"
+            className="text-5xl md:text-6xl lg:text-7xl text-white tracking-tight mb-12 mt-4"
             style={{ fontFamily: "'Instrument Serif', serif" }}
           >
-            Know it <em className="italic font-normal">all</em>.
+            Where <em className="italic font-normal text-white/70">careers</em> rise <br className="hidden md:inline" /> through <em className="italic font-normal text-white/70">clarity.</em>
           </h1>
 
 
 
-          <button className="liquid-glass rounded-full px-8 py-3 text-white text-sm font-medium hover:bg-white/10 transition-colors">
-            Manifesto
-          </button>
         </main>
-
-        {/* Social Footer */}
-        <footer className="relative z-10 flex justify-center gap-4 pb-12">
-          <a href="#" className="liquid-glass rounded-full p-4 text-white/80 hover:text-white hover:bg-white/10 transition-all">
-            <Instagram className="w-5 h-5" />
-          </a>
-          <a href="#" className="liquid-glass rounded-full p-4 text-white/80 hover:text-white hover:bg-white/10 transition-all">
-            <Twitter className="w-5 h-5" />
-          </a>
-          <a href="#" className="liquid-glass rounded-full p-4 text-white/80 hover:text-white hover:bg-white/10 transition-all">
-            <Globe className="w-5 h-5" />
-          </a>
-        </footer>
       </section>
 
       {/* Aggregate Other Sections */}
