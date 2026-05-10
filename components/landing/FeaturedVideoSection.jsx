@@ -35,7 +35,7 @@ export default function FeaturedVideoSection() {
                 Our Approach
               </p>
               <p className="text-white text-sm md:text-base leading-relaxed">
-                We believe in the power of curiosity-driven exploration. Every project starts with a question, and every answer opens a new door to innovation.
+                We believe that true professional evolution requires uncompromising clarity. Every tool we build is designed to eliminate noise and empower your best work.
               </p>
             </div>
 
@@ -44,7 +44,7 @@ export default function FeaturedVideoSection() {
               whileTap={{ scale: 0.95 }}
               className="liquid-glass rounded-full px-8 py-3 text-white text-sm font-medium w-full md:w-auto flex-shrink-0"
             >
-              Explore more
+              Begin Journey
             </motion.button>
           </div>
         </motion.div>

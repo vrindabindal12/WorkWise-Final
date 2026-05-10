@@ -26,8 +26,8 @@ export default function AboutSection() {
           transition={{ duration: 0.8, delay: 0.1 }}
           className="text-4xl md:text-6xl lg:text-7xl text-white leading-[1.1] tracking-tight"
         >
-          Pioneering <em className="italic text-white/60 font-normal" style={{ fontFamily: "'Instrument Serif', serif" }}>ideas</em> for <br className="hidden md:inline" />
-          minds that <em className="italic text-white/60 font-normal" style={{ fontFamily: "'Instrument Serif', serif" }}>create, build, and inspire.</em>
+          Building <em className="italic text-white/60 font-normal" style={{ fontFamily: "'Instrument Serif', serif" }}>intelligent</em> tools for <br className="hidden md:inline" />
+          ambitious minds and <em className="italic text-white/60 font-normal" style={{ fontFamily: "'Instrument Serif', serif" }}>quiet rebels.</em>
         </motion.h2>
       </div>
     </section>
