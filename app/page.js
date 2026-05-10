@@ -148,7 +148,7 @@ export default function LandingPage() {
               </SignedOut>
               <SignedIn>
                 <Link href="/dashboard" className="liquid-glass rounded-full px-6 py-2 text-white text-sm font-medium">
-                  Dashboard
+                  Sign Up
                 </Link>
               </SignedIn>
             </div>
