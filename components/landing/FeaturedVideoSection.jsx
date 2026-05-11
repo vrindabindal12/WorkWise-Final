@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 
 export default function FeaturedVideoSection() {
   return (
-    <section className="bg-black pt-6 md:pt-10 pb-20 md:pb-32 px-6 overflow-hidden">
+    <section className="bg-black pt-4 md:pt-8 pb-12 md:pb-20 px-6 overflow-hidden">
       <div className="max-w-6xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 60 }}
