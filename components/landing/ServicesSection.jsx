@@ -17,10 +17,10 @@ export default function ServicesSection() {
           className="flex flex-row justify-between items-end mb-12"
         >
           <h2 className="text-3xl md:text-5xl text-white tracking-tight font-medium">
-            What we do
+            How we empower you
           </h2>
           <p className="text-white/40 text-sm hidden md:block">
-            Our services
+            Our platform
           </p>
         </motion.div>
 
@@ -53,7 +53,7 @@ export default function ServicesSection() {
             <div className="p-6 md:p-8 flex-1 flex flex-col">
               <div className="flex justify-between items-start mb-12">
                 <p className="uppercase tracking-widest text-white/40 text-xs font-semibold">
-                  Strategy
+                  Workspace
                 </p>
                 <div className="liquid-glass rounded-full p-2">
                   <ArrowUpRight className="text-white w-4 h-4" />
@@ -61,10 +61,10 @@ export default function ServicesSection() {
               </div>
               <div className="mt-auto">
                 <h3 className="text-white text-xl md:text-2xl mb-3 tracking-tight font-medium">
-                  Research & Insight
+                  Intelligent Organization
                 </h3>
                 <p className="text-white/50 text-sm leading-relaxed">
-                  We dig deep into data, culture, and human behavior to surface the insights that drive meaningful, lasting change.
+                  We provide intuitive systems that categorize your projects, surface what matters most, and keep your daily workflow completely friction-free.
                 </p>
               </div>
             </div>
@@ -98,7 +98,7 @@ export default function ServicesSection() {
             <div className="p-6 md:p-8 flex-1 flex flex-col">
               <div className="flex justify-between items-start mb-12">
                 <p className="uppercase tracking-widest text-white/40 text-xs font-semibold">
-                  Craft
+                  Collaboration
                 </p>
                 <div className="liquid-glass rounded-full p-2">
                   <ArrowUpRight className="text-white w-4 h-4" />
@@ -106,10 +106,10 @@ export default function ServicesSection() {
               </div>
               <div className="mt-auto">
                 <h3 className="text-white text-xl md:text-2xl mb-3 tracking-tight font-medium">
-                  Design & Execution
+                  Seamless Connection
                 </h3>
                 <p className="text-white/50 text-sm leading-relaxed">
-                  From concept to launch, we obsess over every detail to deliver experiences that feel effortless and look extraordinary.
+                  From brainstorming to execution, we bring your team together in a unified space where ideas flow effortlessly and real work gets done.
                 </p>
               </div>
             </div>
