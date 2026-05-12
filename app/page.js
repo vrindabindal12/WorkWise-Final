@@ -10,6 +10,7 @@ import AboutSection from "../components/landing/AboutSection";
 import FeaturedVideoSection from "../components/landing/FeaturedVideoSection";
 import PhilosophySection from "../components/landing/PhilosophySection";
 import ServicesSection from "../components/landing/ServicesSection";
+import TestimonialsSection from "../components/landing/TestimonialsSection";
 import PricingSection from "../components/landing/PricingSection";
 
 export default function LandingPage() {
@@ -175,6 +176,7 @@ export default function LandingPage() {
       <FeaturedVideoSection />
       <PhilosophySection />
       <ServicesSection />
+      <TestimonialsSection />
       <PricingSection />
     </div>
   );
