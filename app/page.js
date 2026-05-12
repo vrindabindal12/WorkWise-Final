@@ -10,8 +10,8 @@ import AboutSection from "../components/landing/AboutSection";
 import FeaturedVideoSection from "../components/landing/FeaturedVideoSection";
 import PhilosophySection from "../components/landing/PhilosophySection";
 import ServicesSection from "../components/landing/ServicesSection";
-import TestimonialsSection from "../components/landing/TestimonialsSection";
 import PricingSection from "../components/landing/PricingSection";
+import Footer from "../components/landing/Footer";
 
 export default function LandingPage() {
   const videoRef = useRef(null);
@@ -174,10 +174,10 @@ export default function LandingPage() {
       {/* Aggregate Other Sections */}
       <AboutSection />
       <FeaturedVideoSection />
-      <PhilosophySection />
       <ServicesSection />
-      <TestimonialsSection />
+      <PhilosophySection />
       <PricingSection />
+      <Footer />
     </div>
   );
 }
