@@ -1,35 +1,52 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { Target, Zap, Sparkles } from "lucide-react";
 
 export default function FeaturedVideoSection() {
+  const cards = [
+    {
+      icon: <Target className="w-5 h-5 text-white" />,
+      title: "Absolute Focus",
+      description: "We design spaces that actively eliminate digital noise, allowing you to enter deep work states faster and stay there longer."
+    },
+    {
+      icon: <Zap className="w-5 h-5 text-white" />,
+      title: "Unmatched Velocity",
+      description: "Move from idea to execution without friction. Our tools are optimized for speed, ensuring your workflow never breaks."
+    },
+    {
+      icon: <Sparkles className="w-5 h-5 text-white" />,
+      title: "Radical Clarity",
+      description: "Turn overwhelming chaos into actionable steps. We surface what matters most so you always know exactly what to do next."
+    }
+  ];
+
   return (
     <section className="bg-black pt-4 md:pt-8 pb-12 md:pb-20 px-6 overflow-hidden">
       <div className="max-w-6xl mx-auto">
-        <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.9 }}
-          className="flex flex-col md:flex-row items-center justify-between gap-12 liquid-glass rounded-3xl p-8 md:p-16"
-        >
-          <div className="max-w-2xl">
-            <p className="text-white/50 text-xs tracking-widest uppercase mb-6">
-              Our Approach
-            </p>
-            <p className="text-white text-xl md:text-3xl leading-relaxed tracking-tight">
-              We believe that true professional evolution requires uncompromising clarity. Every tool we build is designed to eliminate noise and empower your best work.
-            </p>
-          </div>
-
-          <motion.button
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            className="bg-white text-black rounded-full px-8 py-4 text-sm font-bold w-full md:w-auto flex-shrink-0 hover:bg-white/90 transition-colors shadow-[0_0_20px_rgba(255,255,255,0.2)]"
-          >
-            Begin Journey
-          </motion.button>
-        </motion.div>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
+          {cards.map((card, index) => (
+            <motion.div
+              key={card.title}
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ duration: 0.7, delay: index * 0.15 }}
+              className="liquid-glass rounded-3xl p-8 flex flex-col hover:bg-white/[0.03] transition-colors"
+            >
+              <div className="border border-white/10 bg-white/[0.02] rounded-full w-12 h-12 flex items-center justify-center mb-10">
+                {card.icon}
+              </div>
+              <h3 className="text-white text-xl font-medium tracking-tight mb-4">
+                {card.title}
+              </h3>
+              <p className="text-white/60 text-sm leading-relaxed">
+                {card.description}
+              </p>
+            </motion.div>
+          ))}
+        </div>
       </div>
     </section>
   );
