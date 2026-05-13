@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Layers, Users, Shield } from "lucide-react";
+import { Layers, Users } from "lucide-react";
 
 export default function FeatureZigZag() {
   const features = [
@@ -12,15 +12,20 @@ export default function FeatureZigZag() {
       icon: <Layers className="w-5 h-5 text-white" />,
       imageAlign: "left",
       visual: (
-        <div className="w-full h-full min-h-[300px] md:min-h-[450px] liquid-glass rounded-3xl border border-white/5 relative overflow-hidden flex items-center justify-center bg-[linear-gradient(to_right,#ffffff0a_1px,transparent_1px),linear-gradient(to_bottom,#ffffff0a_1px,transparent_1px)] bg-[size:24px_24px]">
-          <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent" />
-          <motion.div 
-            animate={{ y: [0, -10, 0] }} 
-            transition={{ repeat: Infinity, duration: 4, ease: "easeInOut" }}
-            className="w-40 h-40 rounded-2xl bg-white/5 border border-white/20 shadow-[0_0_40px_rgba(255,255,255,0.05)] flex items-center justify-center backdrop-blur-md relative z-10"
+        <div className="w-full h-full min-h-[300px] md:min-h-[450px] rounded-3xl border border-white/10 relative overflow-hidden flex items-center justify-center">
+          <video
+            autoPlay
+            loop
+            muted
+            playsInline
+            preload="auto"
+            className="absolute inset-0 w-full h-full object-cover"
           >
-            <Layers className="w-12 h-12 text-white/40" />
-          </motion.div>
+            <source
+              src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260314_131748_f2ca2a28-fed7-44c8-b9a9-bd9acdd5ec31.mp4"
+              type="video/mp4"
+            />
+          </video>
         </div>
       )
     },
@@ -31,35 +36,20 @@ export default function FeatureZigZag() {
       icon: <Users className="w-5 h-5 text-white" />,
       imageAlign: "right",
       visual: (
-        <div className="w-full h-full min-h-[300px] md:min-h-[450px] liquid-glass rounded-3xl border border-white/5 relative overflow-hidden flex items-center justify-center bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.05)_0%,transparent_70%)]">
-           <motion.div 
-            animate={{ scale: [1, 1.05, 1] }} 
-            transition={{ repeat: Infinity, duration: 5, ease: "easeInOut" }}
-            className="flex gap-4 items-center relative z-10"
+        <div className="w-full h-full min-h-[300px] md:min-h-[450px] rounded-3xl border border-white/10 relative overflow-hidden flex items-center justify-center">
+          <video
+            autoPlay
+            loop
+            muted
+            playsInline
+            preload="auto"
+            className="absolute inset-0 w-full h-full object-cover"
           >
-            <div className="w-16 h-16 md:w-20 md:h-20 rounded-full bg-white/5 border border-white/20 backdrop-blur-xl shadow-[0_0_30px_rgba(255,255,255,0.05)]" />
-            <div className="w-16 h-16 md:w-20 md:h-20 rounded-full bg-white/10 border border-white/30 backdrop-blur-xl -ml-8 shadow-[0_0_30px_rgba(255,255,255,0.1)]" />
-            <div className="w-16 h-16 md:w-20 md:h-20 rounded-full bg-white/5 border border-white/20 backdrop-blur-xl -ml-8 flex items-center justify-center text-white/50 text-sm font-medium shadow-[0_0_30px_rgba(255,255,255,0.05)]">+3</div>
-          </motion.div>
-        </div>
-      )
-    },
-    {
-      title: "Secure & Private",
-      subtitle: "Infrastructure",
-      description: "Your data belongs to you. We employ state-of-the-art encryption and strict privacy policies to keep your intellectual property safe, giving you the peace of mind to work without limits.",
-      icon: <Shield className="w-5 h-5 text-white" />,
-      imageAlign: "left",
-      visual: (
-        <div className="w-full h-full min-h-[300px] md:min-h-[450px] liquid-glass rounded-3xl border border-white/5 relative overflow-hidden flex items-center justify-center bg-black">
-          <div className="absolute inset-0 opacity-[0.03] bg-[repeating-linear-gradient(45deg,transparent,transparent_10px,rgba(255,255,255,1)_10px,rgba(255,255,255,1)_20px)]" />
-          <motion.div 
-            animate={{ rotateY: [0, 360] }} 
-            transition={{ repeat: Infinity, duration: 15, ease: "linear" }}
-            className="w-32 h-32 md:w-40 md:h-40 rounded-[2rem] border border-white/10 shadow-[0_0_50px_rgba(255,255,255,0.05)] flex items-center justify-center bg-white/[0.02] backdrop-blur-3xl relative z-10"
-          >
-            <Shield className="w-12 h-12 text-white/40" />
-          </motion.div>
+            <source
+              src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260324_151826_c7218672-6e92-402c-9e45-f1e0f454bdc4.mp4"
+              type="video/mp4"
+            />
+          </video>
         </div>
       )
     }
