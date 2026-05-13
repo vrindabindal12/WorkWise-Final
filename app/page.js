@@ -12,6 +12,7 @@ import PhilosophySection from "../components/landing/PhilosophySection";
 import ServicesSection from "../components/landing/ServicesSection";
 import PricingSection from "../components/landing/PricingSection";
 import Footer from "../components/landing/Footer";
+import LogoTicker from "../components/landing/LogoTicker";
 
 export default function LandingPage() {
   const videoRef = useRef(null);
@@ -159,7 +160,7 @@ export default function LandingPage() {
 
         {/* Hero Content */}
         <main className="relative z-10 flex-1 flex flex-col items-center justify-center px-6 py-12 text-center -translate-y-[26%] md:-translate-y-[34%]">
-          <h1 
+          <h1
             className="text-5xl md:text-6xl lg:text-7xl text-white tracking-tight whitespace-nowrap mb-12 mt-4"
             style={{ fontFamily: "'Instrument Serif', serif" }}
           >
@@ -171,12 +172,16 @@ export default function LandingPage() {
         </main>
       </section>
 
+
+
       {/* Aggregate Other Sections */}
       <AboutSection />
       <FeaturedVideoSection />
       <ServicesSection />
       <PhilosophySection />
+      <LogoTicker />
       <PricingSection />
+
       <Footer />
     </div>
   );
