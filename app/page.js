@@ -8,8 +8,7 @@ import { SignedIn, SignedOut, SignUpButton } from "@clerk/nextjs";
 // Import sections
 import AboutSection from "../components/landing/AboutSection";
 import FeaturedVideoSection from "../components/landing/FeaturedVideoSection";
-import PhilosophySection from "../components/landing/PhilosophySection";
-import ServicesSection from "../components/landing/ServicesSection";
+import FeatureZigZag from "../components/landing/FeatureZigZag";
 import PricingSection from "../components/landing/PricingSection";
 import Footer from "../components/landing/Footer";
 import LogoTicker from "../components/landing/LogoTicker";
@@ -177,8 +176,7 @@ export default function LandingPage() {
       {/* Aggregate Other Sections */}
       <AboutSection />
       <FeaturedVideoSection />
-      <ServicesSection />
-      <PhilosophySection />
+      <FeatureZigZag />
       <LogoTicker />
       <PricingSection />
 
