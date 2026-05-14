@@ -46,6 +46,10 @@
   --ring: 0 0% 80%;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   font-family: var(--font-body);
 }

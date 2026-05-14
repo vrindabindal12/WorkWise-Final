@@ -123,14 +123,17 @@ export default function LandingPage() {
                 WorkWise
               </Link>
               <div className="hidden md:flex items-center gap-8 ml-8">
+                <Link href="#about" className="text-white/80 hover:text-white text-sm font-medium transition-colors">
+                  About
+                </Link>
                 <Link href="#features" className="text-white/80 hover:text-white text-sm font-medium transition-colors">
                   Features
                 </Link>
                 <Link href="#pricing" className="text-white/80 hover:text-white text-sm font-medium transition-colors">
                   Pricing
                 </Link>
-                <Link href="#about" className="text-white/80 hover:text-white text-sm font-medium transition-colors">
-                  About
+                <Link href="#faq" className="text-white/80 hover:text-white text-sm font-medium transition-colors">
+                  FAQ
                 </Link>
               </div>
             </div>

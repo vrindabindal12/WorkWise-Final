@@ -31,7 +31,7 @@ export default function FaqSection() {
   const [openIndex, setOpenIndex] = useState(null);
 
   return (
-    <section className="bg-black py-16 md:py-20 px-6 overflow-hidden border-t border-white/5">
+    <section id="faq" className="bg-black py-16 md:py-20 px-6 overflow-hidden border-t border-white/5">
       <div className="max-w-4xl mx-auto">
         <div className="text-center mb-12 md:mb-16 flex flex-col items-center">
           <div className="border border-white/10 rounded-full px-4 py-1.5 mb-6 flex items-center justify-center bg-white/[0.02]">

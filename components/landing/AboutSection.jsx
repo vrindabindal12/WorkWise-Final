@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 
 export default function AboutSection() {
   return (
-    <section className="relative bg-black pt-16 md:pt-24 pb-8 md:pb-12 px-6 overflow-hidden">
+    <section id="about" className="relative bg-black pt-16 md:pt-24 pb-8 md:pb-12 px-6 overflow-hidden">
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_rgba(255,255,255,0.03)_0%,_transparent_70%)] pointer-events-none" />
       
       <div className="relative z-10 max-w-6xl mx-auto">
