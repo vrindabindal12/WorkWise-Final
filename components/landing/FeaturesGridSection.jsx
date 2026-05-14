@@ -3,7 +3,7 @@
 import { motion } from "framer-motion";
 import { Target, Zap, Sparkles } from "lucide-react";
 
-export default function FeaturedVideoSection() {
+export default function FeaturesGridSection() {
   const cards = [
     {
       icon: <Target className="w-5 h-5 text-white" />,
@@ -33,17 +33,22 @@ export default function FeaturedVideoSection() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-100px" }}
               transition={{ duration: 0.7, delay: index * 0.15 }}
-              className="liquid-glass rounded-3xl p-8 flex flex-col hover:bg-white/[0.03] transition-colors"
+              className="group relative liquid-glass rounded-3xl p-8 flex flex-col border border-white/5 hover:border-white/20 transition-all duration-500 hover:-translate-y-1 overflow-hidden"
             >
-              <div className="border border-white/10 bg-white/[0.02] rounded-full w-12 h-12 flex items-center justify-center mb-10">
-                {card.icon}
+              {/* Subtle hover gradient background */}
+              <div className="absolute inset-0 bg-gradient-to-br from-white/[0.05] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+              
+              <div className="relative z-10">
+                <div className="border border-white/10 bg-white/[0.02] group-hover:bg-white/[0.08] group-hover:border-white/20 transition-colors duration-500 rounded-full w-12 h-12 flex items-center justify-center mb-10">
+                  {card.icon}
+                </div>
+                <h3 className="text-white text-xl font-medium tracking-tight mb-4 group-hover:text-white transition-colors duration-500">
+                  {card.title}
+                </h3>
+                <p className="text-white/60 text-sm leading-relaxed group-hover:text-white/80 transition-colors duration-500">
+                  {card.description}
+                </p>
               </div>
-              <h3 className="text-white text-xl font-medium tracking-tight mb-4">
-                {card.title}
-              </h3>
-              <p className="text-white/60 text-sm leading-relaxed">
-                {card.description}
-              </p>
             </motion.div>
           ))}
         </div>
