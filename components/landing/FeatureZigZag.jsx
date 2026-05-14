@@ -56,8 +56,8 @@ export default function FeatureZigZag() {
   ];
 
   return (
-    <section className="bg-black py-24 md:py-32 px-6 overflow-hidden">
-      <div className="max-w-6xl mx-auto space-y-24 md:space-y-40">
+    <section className="bg-black py-12 md:py-20 px-6 overflow-hidden">
+      <div className="max-w-6xl mx-auto space-y-16 md:space-y-24">
         
         <div className="text-center max-w-2xl mx-auto mb-16">
           <div className="inline-flex border border-white/10 rounded-full px-4 py-1.5 mb-6 bg-white/[0.02]">

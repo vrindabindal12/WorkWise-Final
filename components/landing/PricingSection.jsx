@@ -55,7 +55,7 @@ export default function PricingSection() {
   ];
 
   return (
-    <section id="pricing" className="relative bg-black py-24 md:py-32 px-6 overflow-hidden border-t border-white/5">
+    <section id="pricing" className="relative bg-black py-16 md:py-20 px-6 overflow-hidden border-t border-white/5">
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_rgba(255,255,255,0.02)_0%,_transparent_70%)] pointer-events-none" />
       
       <div className="relative z-10 max-w-6xl mx-auto">
@@ -64,7 +64,7 @@ export default function PricingSection() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.8 }}
-          className="text-center mb-16 md:mb-24 flex flex-col items-center"
+          className="text-center mb-12 md:mb-16 flex flex-col items-center"
         >
           <div className="border border-white/10 rounded-full px-4 py-1.5 mb-6 flex items-center justify-center bg-white/[0.02]">
             <span className="text-white/60 text-xs font-medium tracking-widest uppercase">Pricing</span>
