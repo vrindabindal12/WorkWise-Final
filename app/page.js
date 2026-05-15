@@ -164,13 +164,13 @@ export default function LandingPage() {
         {/* Hero Content */}
         <main className="relative z-10 flex-1 flex flex-col items-center justify-center px-6 py-12 text-center -translate-y-[26%] md:-translate-y-[34%]">
           <h1
-            className="text-5xl md:text-6xl lg:text-7xl text-white tracking-tight whitespace-nowrap mb-6 mt-4"
+            className="text-4xl md:text-5xl lg:text-6xl text-white tracking-tight whitespace-nowrap mb-3 mt-4"
             style={{ fontFamily: "'Instrument Serif', serif" }}
           >
             Where <em className="italic font-normal text-white/70">careers</em> rise through <em className="italic font-normal text-white/70">clarity.</em>
           </h1>
           
-          <p className="text-white/60 text-lg md:text-xl max-w-2xl mx-auto leading-relaxed">
+          <p className="text-white/60 text-base md:text-lg max-w-2xl mx-auto leading-relaxed">
             We build intelligent spaces that eliminate digital noise, bringing radical clarity to your workflow and accelerating your execution.
           </p>
         </main>
