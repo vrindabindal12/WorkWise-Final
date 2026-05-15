@@ -170,29 +170,30 @@ export default function LandingPage() {
             Where <em className="italic font-normal text-white/70">careers</em> rise through <em className="italic font-normal text-white/70">clarity.</em>
           </h1>
           
-          <p className="text-white/60 text-lg md:text-xl max-w-2xl mx-auto mb-10 leading-relaxed">
+          <p className="text-white/60 text-lg md:text-xl max-w-2xl mx-auto leading-relaxed">
             We build intelligent spaces that eliminate digital noise, bringing radical clarity to your workflow and accelerating your execution.
           </p>
-
-          <div className="flex flex-col sm:flex-row items-center gap-4">
-            <SignedOut>
-              <SignUpButton mode="modal">
-                <button className="bg-white text-black px-8 py-3.5 rounded-full font-medium hover:bg-white/90 transition-colors shadow-[0_0_20px_rgba(255,255,255,0.2)] flex items-center gap-2 cursor-pointer">
-                  Start for free <ArrowRight className="w-4 h-4" />
-                </button>
-              </SignUpButton>
-            </SignedOut>
-            <SignedIn>
-              <Link href="/dashboard" className="bg-white text-black px-8 py-3.5 rounded-full font-medium hover:bg-white/90 transition-colors shadow-[0_0_20px_rgba(255,255,255,0.2)] flex items-center gap-2">
-                Go to Dashboard <ArrowRight className="w-4 h-4" />
-              </Link>
-            </SignedIn>
-
-            <Link href="#features" className="liquid-glass px-8 py-3.5 rounded-full text-white font-medium transition-colors border border-white/10 hover:border-white/30">
-              View features
-            </Link>
-          </div>
         </main>
+
+        {/* Bottom Right CTAs */}
+        <div className="absolute bottom-8 right-6 md:bottom-12 md:right-12 z-20 flex flex-col sm:flex-row items-end sm:items-center gap-4">
+          <SignedOut>
+            <SignUpButton mode="modal">
+              <button className="bg-white text-black px-8 py-3.5 rounded-full font-medium hover:bg-white/90 transition-colors shadow-[0_0_20px_rgba(255,255,255,0.2)] flex items-center gap-2 cursor-pointer">
+                Start for free <ArrowRight className="w-4 h-4" />
+              </button>
+            </SignUpButton>
+          </SignedOut>
+          <SignedIn>
+            <Link href="/dashboard" className="bg-white text-black px-8 py-3.5 rounded-full font-medium hover:bg-white/90 transition-colors shadow-[0_0_20px_rgba(255,255,255,0.2)] flex items-center gap-2">
+              Go to Dashboard <ArrowRight className="w-4 h-4" />
+            </Link>
+          </SignedIn>
+
+          <Link href="#features" className="liquid-glass px-8 py-3.5 rounded-full text-white font-medium transition-colors border border-white/10 hover:border-white/30">
+            View features
+          </Link>
+        </div>
       </section>
 
       <LogoTicker />
