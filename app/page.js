@@ -114,8 +114,8 @@ export default function LandingPage() {
         </video>
 
         {/* Navbar */}
-        <header className="relative z-20 px-6 py-6 w-full">
-          <nav className="liquid-glass rounded-full max-w-5xl mx-auto px-6 py-3 flex justify-between items-center">
+        <header className="fixed top-0 left-0 right-0 z-50 px-6 py-4 md:py-6 w-full pointer-events-none">
+          <nav className="liquid-glass rounded-full max-w-5xl mx-auto px-6 py-3 flex justify-between items-center pointer-events-auto">
             {/* Left */}
             <div className="flex items-center">
               <Globe className="text-white w-6 h-6 mr-3" />
