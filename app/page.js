@@ -3,7 +3,7 @@
 import React, { useEffect, useRef } from "react";
 import Link from "next/link";
 import { Globe, ArrowRight, Twitter, Instagram } from "lucide-react";
-import { SignedIn, SignedOut, SignUpButton } from "@clerk/nextjs";
+import { SignedIn, SignedOut, SignUpButton, SignInButton } from "@clerk/nextjs";
 
 // Import sections
 import AboutSection from "../components/landing/AboutSection";
@@ -141,14 +141,14 @@ export default function LandingPage() {
             {/* Right */}
             <div className="flex items-center gap-4">
               <SignedOut>
-                <SignUpButton mode="modal">
+                <SignInButton mode="modal">
                   <button className="text-white text-sm font-medium hover:text-white/80 transition-colors cursor-pointer">
-                    Sign Up
+                    Log In
                   </button>
-                </SignUpButton>
+                </SignInButton>
                 <SignUpButton mode="modal">
                   <button className="liquid-glass rounded-full px-6 py-2 text-white text-sm font-medium cursor-pointer">
-                    Login
+                    Sign Up
                   </button>
                 </SignUpButton>
               </SignedOut>
@@ -170,7 +170,7 @@ export default function LandingPage() {
             Where <em className="italic font-normal text-white/70">careers</em> rise through <em className="italic font-normal text-white/70">intelligence.</em>
           </h1>
           
-          <p className="text-white/60 text-base md:text-lg max-w-2xl mx-auto leading-relaxed">
+          <p className="text-white/60 text-sm md:text-base max-w-2xl mx-auto leading-relaxed">
             We provide an AI-native career platform that eliminates guesswork, bringing radical clarity to your job search and accelerating your professional growth.
           </p>
         </main>
@@ -180,19 +180,20 @@ export default function LandingPage() {
           <SignedOut>
             <SignUpButton mode="modal">
               <button className="bg-white text-black px-8 py-3.5 rounded-full font-medium hover:bg-white/90 transition-colors shadow-[0_0_20px_rgba(255,255,255,0.2)] flex items-center gap-2 cursor-pointer">
-                Start for free <ArrowRight className="w-4 h-4" />
+                Sign Up <ArrowRight className="w-4 h-4" />
               </button>
             </SignUpButton>
+            <SignInButton mode="modal">
+              <button className="liquid-glass px-8 py-3.5 rounded-full text-white font-medium transition-colors border border-white/10 hover:border-white/30 cursor-pointer">
+                Log In
+              </button>
+            </SignInButton>
           </SignedOut>
           <SignedIn>
             <Link href="/dashboard" className="bg-white text-black px-8 py-3.5 rounded-full font-medium hover:bg-white/90 transition-colors shadow-[0_0_20px_rgba(255,255,255,0.2)] flex items-center gap-2">
               Go to Dashboard <ArrowRight className="w-4 h-4" />
             </Link>
           </SignedIn>
-
-          <Link href="#features" className="liquid-glass px-8 py-3.5 rounded-full text-white font-medium transition-colors border border-white/10 hover:border-white/30">
-            View features
-          </Link>
         </div>
       </section>
 
