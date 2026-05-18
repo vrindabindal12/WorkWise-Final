@@ -9,6 +9,7 @@ import {
   GraduationCap,
   ChevronDown,
   StarsIcon,
+  Globe,
 } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -28,11 +29,14 @@ const Header = ({ user }) => {
 
   return (
     <>
-      <header className="fixed top-0 w-full border-b bg-background/80 backdrop-blur-md z-50 supports-[backdrop-filter]:bg-background/60">
-        <nav className="container mx-auto px-4 h-16 flex items-center justify-between">
-          <Link href="/">
-            <h1 className="font-bold text-3xl gradient-text">WorkWise</h1>
-          </Link>
+      <header className="fixed top-0 w-full z-50 px-4 py-4 md:py-6 pointer-events-none">
+        <nav className="liquid-glass rounded-full max-w-7xl mx-auto px-6 py-3 flex items-center justify-between pointer-events-auto">
+          <div className="flex items-center">
+            <Globe className="text-white w-6 h-6 mr-3" />
+            <Link href="/" className="text-white font-semibold text-lg">
+              WorkWise
+            </Link>
+          </div>
 
           {/* Action Buttons */}
           <div className="flex items-center space-x-2 md:space-x-4">

@@ -7,7 +7,7 @@ import Footer from "../components/footer";
 import { ThemeProvider } from "../components/theme-provider";
 import { dark } from "@clerk/themes";
 import { checkUser } from "../lib/checkUser"; // Import checkUser here
-import ParticleBackground from "../components/ParticleBackground"; 
+
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -24,14 +24,14 @@ export default async function RootLayout({ children }) {
       <ClerkProvider appearance={{ baseTheme: dark }}>
         <head>
         </head>
-        <body className={`${inter.className} dark:bg-[#121212] text-gray-300`}>
+        <body className={`${inter.className} bg-black text-white/80`}>
           <ThemeProvider
             attribute="class"
             defaultTheme="dark"
             enableSystem
             disableTransitionOnChange
           >
-                      <ParticleBackground /> {/* Animated Particles */}
+
             <Header user={user} /> {/* Pass user data to Header */}
             <main className="min-h-screen">{children}</main>
             <Toaster richColors theme="dark" />
