@@ -157,7 +157,7 @@ export default function LandingPage() {
         </header>
 
         {/* Hero Content */}
-        <main className="relative z-10 flex-1 flex flex-col items-center justify-center px-6 py-12 text-center -translate-y-[26%] md:-translate-y-[34%]">
+        <main className="relative z-10 flex-1 flex flex-col items-center justify-center px-6 py-12 text-center -translate-y-[20%]">
           <h1
             className="text-4xl md:text-5xl lg:text-6xl text-white tracking-tight whitespace-nowrap mb-3 mt-4"
             style={{ fontFamily: "'Instrument Serif', serif" }}
