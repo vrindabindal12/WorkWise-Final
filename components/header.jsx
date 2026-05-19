@@ -10,6 +10,9 @@ import {
   ChevronDown,
   StarsIcon,
   Globe,
+  MessageSquare,
+  Video,
+  TrendingUp,
 } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -46,11 +49,11 @@ const Header = ({ user }) => {
                   variant="outline"
                   className="hidden text-xs md:inline-flex items-center gap-2 hover:text-black hover:bg-white transition-all duration-300"
                 >
-                  <LayoutDashboard className="h-4 w-4" />
-                  Chat With Mentor
+                  <MessageSquare className="h-4 w-4" />
+                  Live Chat
                 </Button>
                 <Button variant="ghost" className="md:hidden w-10 h-10 p-0">
-                  <LayoutDashboard className="h-4 w-4" />
+                  <MessageSquare className="h-4 w-4" />
                 </Button>
               </Link>
               <Link href="/guidance">
@@ -58,11 +61,11 @@ const Header = ({ user }) => {
                   variant="outline"
                   className="hidden text-xs md:inline-flex items-center gap-2 hover:text-black hover:bg-white transition-all duration-300"
                 >
-                  <LayoutDashboard className="h-4 w-4" />
-                  Mentor Guidance
+                  <Video className="h-4 w-4" />
+                  Video Sessions
                 </Button>
                 <Button variant="ghost" className=" md:hidden w-10 h-10 p-0">
-                  <LayoutDashboard className="h-4 w-4" />
+                  <Video className="h-4 w-4" />
                 </Button>
               </Link>
               <Link href="/dashboard">
@@ -70,11 +73,11 @@ const Header = ({ user }) => {
                   variant="outline"
                   className="hidden md:inline-flex text-xs items-center gap-2 hover:text-black hover:bg-white transition-all duration-300"
                 >
-                  <LayoutDashboard className="h-4 w-4" />
+                  <TrendingUp className="h-4 w-4" />
                   Industry Insights
                 </Button>
                 <Button variant="ghost" className="md:hidden w-10 h-10 p-0">
-                  <LayoutDashboard className="h-4 w-4" />
+                  <TrendingUp className="h-4 w-4" />
                 </Button>
               </Link>
 
