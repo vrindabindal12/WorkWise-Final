@@ -84,14 +84,13 @@ const Header = ({ user }) => {
               {/* Growth Tools Dropdown */}
               <DropdownMenu>
                 <DropdownMenuTrigger asChild>
-                  <Button className="flex items-center gap-2">
-                    <div className="border-1 hover:scale-110 ease-in-out p-2 rounded-sm flex justify-center items-center gap-2 hover:text-black hover:bg-white transition-all duration-300">
-                      <StarsIcon className="h-4 w-4" />
-                      <span className="hidden md:block">
-                        <p className="text-xs">Growth Tools</p>
-                      </span>
-                    </div>
-                    <ChevronDown className="h-4 w-4" />
+                  <Button
+                    variant="outline"
+                    className="flex items-center gap-2 text-xs hover:text-black hover:bg-white transition-all duration-300"
+                  >
+                    <StarsIcon className="h-4 w-4" />
+                    <span className="hidden md:inline">Growth Tools</span>
+                    <ChevronDown className="h-4 w-4 md:ml-1" />
                   </Button>
                 </DropdownMenuTrigger>
                 <DropdownMenuContent align="end" className="w-48">
