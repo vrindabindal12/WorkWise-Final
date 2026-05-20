@@ -158,6 +158,7 @@ export default function ResumeBuilder({ initialContent }) {
             variant="destructive"
             onClick={handleSubmit(onSubmit)}
             disabled={isSaving}
+            className="border border-red-500/40 hover:border-red-500/60"
           >
             {isSaving ? (
               <>
@@ -171,7 +172,11 @@ export default function ResumeBuilder({ initialContent }) {
               </>
             )}
           </Button>
-          <Button onClick={generatePDF} disabled={isGenerating}>
+          <Button 
+            onClick={generatePDF} 
+            disabled={isGenerating}
+            className="border border-white/20 hover:border-white/40"
+          >
             {isGenerating ? (
               <>
                 <Loader2 className="h-4 w-4 animate-spin" />
@@ -188,9 +193,9 @@ export default function ResumeBuilder({ initialContent }) {
       </div>
 
       <Tabs value={activeTab} onValueChange={setActiveTab}>
-        <TabsList>
-          <TabsTrigger value="edit">Form</TabsTrigger>
-          <TabsTrigger value="preview">Markdown</TabsTrigger>
+        <TabsList className="border border-white/10 p-1">
+          <TabsTrigger value="edit" className="border border-transparent data-[state=active]:border-white/20">Form</TabsTrigger>
+          <TabsTrigger value="preview" className="border border-transparent data-[state=active]:border-white/20">Markdown</TabsTrigger>
         </TabsList>
 
         <TabsContent value="edit">
