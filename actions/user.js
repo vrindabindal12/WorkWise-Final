@@ -4,36 +4,50 @@ import { db } from "../lib/prisma";
 import { auth } from "@clerk/nextjs/server";
 import { revalidatePath } from "next/cache";
 import { generateAIInsights } from "./dashboard";
+import { checkUser } from "../lib/checkUser";
 
 export async function updateUser(data) {
   const { userId } = await auth();
   if (!userId) throw new Error("Unauthorized");
 
-  const user = await db.user.findUnique({
+  let user = await db.user.findUnique({
     where: { clerkUserId: userId },
   });
 
-  if (!user) throw new Error("User not found");
+  if (!user) {
+    user = await checkUser();
+    if (!user) throw new Error("User not found");
+  }
 
   try {
+    // Check if industry insight exists FIRST outside the transaction
+    let existingInsight = await db.industryInsight.findUnique({
+      where: { industry: data.industry },
+    });
+
+    // If it doesn't exist, generate insights BEFORE the transaction begins
+    // to prevent holding up the database connection pool for 10+ seconds.
+    let generatedInsights = null;
+    if (!existingInsight) {
+      generatedInsights = await generateAIInsights(data.industry);
+    }
+
     // Start a transaction to handle both operations
     const result = await db.$transaction(
       async (tx) => {
-        // First check if industry exists
+        // Double check inside transaction to avoid race conditions
         let industryInsight = await tx.industryInsight.findUnique({
           where: {
             industry: data.industry,
           },
         });
 
-        // If industry doesn't exist, create it with default values
-        if (!industryInsight) {
-          const insights = await generateAIInsights(data.industry);
-
-          industryInsight = await db.industryInsight.create({
+        // If industry doesn't exist, create it with generated insights
+        if (!industryInsight && generatedInsights) {
+          industryInsight = await tx.industryInsight.create({
             data: {
               industry: data.industry,
-              ...insights,
+              ...generatedInsights,
               nextUpdate: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000),
             },
           });
@@ -71,11 +85,14 @@ export async function getUserOnboardingStatus() {
   const { userId } = await auth();
   if (!userId) throw new Error("Unauthorized");
 
-  const user = await db.user.findUnique({
+  let user = await db.user.findUnique({
     where: { clerkUserId: userId },
   });
 
-  if (!user) throw new Error("User not found");
+  if (!user) {
+    user = await checkUser();
+    if (!user) throw new Error("User not found");
+  }
 
   try {
     const user = await db.user.findUnique({
