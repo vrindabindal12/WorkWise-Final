@@ -154,7 +154,7 @@ const DashboardView = ({ insights }) => {
           <CardContent className="relative z-10">
             <div className="flex flex-wrap gap-2 pt-1">
               {insights.topSkills.slice(0, 4).map((skill) => (
-                <Badge key={skill} variant="secondary" className="bg-white/5 hover:bg-white/10 border-white/10 text-white/80 font-normal">
+                <Badge key={skill} variant="secondary" className="bg-white/5 hover:bg-white/10 border-white/10 text-white/80 font-normal whitespace-normal text-left h-auto py-1">
                   {skill}
                 </Badge>
               ))}
@@ -258,7 +258,7 @@ const DashboardView = ({ insights }) => {
                 <Badge 
                   key={skill} 
                   variant="outline"
-                  className="px-4 py-2 bg-white/5 hover:bg-white/10 border-white/10 text-white/80 font-normal hover:border-white/30 transition-all text-sm rounded-full"
+                  className="px-4 py-2 bg-white/5 hover:bg-white/10 border-white/10 text-white/80 font-normal hover:border-white/30 transition-all text-sm rounded-xl whitespace-normal text-left h-auto"
                 >
                   {skill}
                 </Badge>
