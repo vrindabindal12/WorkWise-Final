@@ -109,7 +109,7 @@ const Header = ({ user }) => {
                   <DropdownMenuItem asChild>
                     <Link href="/interview" className="flex items-center gap-2">
                       <GraduationCap className="h-4 w-4" />
-                      Interview Prep
+                      Quiz Preparation
                     </Link>
                   </DropdownMenuItem>
                 </DropdownMenuContent>
