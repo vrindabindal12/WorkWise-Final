@@ -164,20 +164,7 @@ export default function LandingPage() {
             Know it <em className="italic font-normal">all</em>.
           </h1>
 
-          <div className="liquid-glass rounded-full pl-6 pr-2 py-2 flex items-center gap-3 max-w-xl w-full mb-8">
-            <input 
-              type="email" 
-              placeholder="Enter your email" 
-              className="bg-transparent border-none outline-none text-white placeholder:text-white/40 flex-1 text-sm"
-            />
-            <button className="bg-white rounded-full p-3 text-black hover:scale-105 transition-transform">
-              <ArrowRight className="w-5 h-5" />
-            </button>
-          </div>
 
-          <p className="text-white text-sm leading-relaxed px-4 max-w-md mx-auto mb-8">
-            Stay updated with the latest news and insights. Subscribe to our newsletter today and never miss out on exciting updates.
-          </p>
 
           <button className="liquid-glass rounded-full px-8 py-3 text-white text-sm font-medium hover:bg-white/10 transition-colors">
             Manifesto
