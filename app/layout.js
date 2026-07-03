@@ -1,11 +1,8 @@
 import { Inter } from "next/font/google";
 import "./globals.css";
-import { ClerkProvider } from "@clerk/nextjs";
 import { Toaster } from "sonner";
 import Header from "../components/header";
-import Footer from "../components/footer";
 import { ThemeProvider } from "../components/theme-provider";
-import { dark } from "@clerk/themes";
 import { checkUser } from "../lib/checkUser"; // Import checkUser here
 
 
@@ -21,7 +18,6 @@ export default async function RootLayout({ children }) {
 
   return (
     <html lang="en" suppressHydrationWarning>
-      <ClerkProvider appearance={{ baseTheme: dark }}>
         <head>
         </head>
         <body className={`${inter.className} bg-black text-white/80`}>
@@ -35,10 +31,8 @@ export default async function RootLayout({ children }) {
             <Header user={user} /> {/* Pass user data to Header */}
             <main className="min-h-screen">{children}</main>
             <Toaster richColors theme="dark" />
-            <Footer />
           </ThemeProvider>
         </body>
-      </ClerkProvider>
     </html>
   );
 }

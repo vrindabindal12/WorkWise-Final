@@ -1,23 +1,14 @@
 "use server";
 
 import { db } from "../lib/prisma";
-import { auth } from "@clerk/nextjs/server";
+
 import { revalidatePath } from "next/cache";
 import { generateAIInsights } from "./dashboard";
 import { checkUser } from "../lib/checkUser";
 
 export async function updateUser(data) {
-  const { userId } = await auth();
-  if (!userId) throw new Error("Unauthorized");
-
-  let user = await db.user.findUnique({
-    where: { clerkUserId: userId },
-  });
-
-  if (!user) {
-    user = await checkUser();
-    if (!user) throw new Error("User not found");
-  }
+  let user = await checkUser();
+  if (!user) throw new Error("User not found");
 
   try {
     // Check if industry insight exists FIRST outside the transaction
@@ -82,27 +73,11 @@ export async function updateUser(data) {
 }
 
 export async function getUserOnboardingStatus() {
-  const { userId } = await auth();
-  if (!userId) throw new Error("Unauthorized");
-
-  let user = await db.user.findUnique({
-    where: { clerkUserId: userId },
-  });
-
-  if (!user) {
-    user = await checkUser();
-    if (!user) throw new Error("User not found");
-  }
+  let user = await checkUser();
+  if (!user) throw new Error("User not found");
 
   try {
-    const user = await db.user.findUnique({
-      where: {
-        clerkUserId: userId,
-      },
-      select: {
-        industry: true,
-      },
-    });
+
 
     return {
       isOnboarded: !!user?.industry,

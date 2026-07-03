@@ -3,8 +3,6 @@
 import React, { useEffect, useRef } from "react";
 import Link from "next/link";
 import { Globe, ArrowRight, Twitter, Instagram } from "lucide-react";
-import { SignedIn, SignedOut, SignUpButton, SignInButton } from "@clerk/nextjs";
-
 // Import sections
 import AboutSection from "../components/landing/AboutSection";
 import FeaturesGridSection from "../components/landing/FeaturesGridSection";
@@ -140,18 +138,9 @@ export default function LandingPage() {
 
             {/* Right */}
             <div className="flex items-center gap-4">
-              <SignedOut>
-                <SignUpButton mode="modal">
-                  <button className="liquid-glass rounded-full px-6 py-2 text-white text-sm font-medium hover:bg-white/10 transition-colors cursor-pointer">
-                    Sign Up
-                  </button>
-                </SignUpButton>
-              </SignedOut>
-              <SignedIn>
-                <Link href="/dashboard" className="liquid-glass rounded-full px-6 py-2 text-white text-sm font-medium hover:bg-white/10 transition-colors cursor-pointer">
-                  Dashboard
-                </Link>
-              </SignedIn>
+              <Link href="/dashboard" className="liquid-glass rounded-full px-6 py-2 text-white text-sm font-medium hover:bg-white/10 transition-colors cursor-pointer">
+                Dashboard
+              </Link>
             </div>
           </nav>
         </header>
@@ -172,23 +161,9 @@ export default function LandingPage() {
 
         {/* Bottom Right CTAs */}
         <div className="absolute bottom-8 right-6 md:bottom-12 md:right-12 z-20 flex flex-col sm:flex-row items-end sm:items-center gap-4">
-          <SignedOut>
-            <SignUpButton mode="modal">
-              <button className="bg-white text-black px-8 py-3.5 rounded-full font-medium hover:bg-white/90 transition-colors shadow-[0_0_20px_rgba(255,255,255,0.2)] flex items-center gap-2 cursor-pointer">
-                Sign Up <ArrowRight className="w-4 h-4" />
-              </button>
-            </SignUpButton>
-            <SignInButton mode="modal">
-              <button className="liquid-glass px-8 py-3.5 rounded-full text-white font-medium transition-colors border border-white/10 hover:border-white/30 cursor-pointer">
-                Sign In
-              </button>
-            </SignInButton>
-          </SignedOut>
-          <SignedIn>
-            <Link href="/dashboard" className="bg-white text-black px-8 py-3.5 rounded-full font-medium hover:bg-white/90 transition-colors shadow-[0_0_20px_rgba(255,255,255,0.2)] flex items-center gap-2">
-              Go to Dashboard <ArrowRight className="w-4 h-4" />
-            </Link>
-          </SignedIn>
+          <Link href="/dashboard" className="bg-white text-black px-8 py-3.5 rounded-full font-medium hover:bg-white/90 transition-colors shadow-[0_0_20px_rgba(255,255,255,0.2)] flex items-center gap-2">
+            Go to Dashboard <ArrowRight className="w-4 h-4" />
+          </Link>
         </div>
       </section>
 

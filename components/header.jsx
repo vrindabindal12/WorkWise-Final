@@ -16,7 +16,6 @@ import {
 } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { SignedIn, SignedOut, SignInButton, UserButton } from "@clerk/nextjs";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -43,7 +42,6 @@ const Header = ({ user }) => {
 
           {/* Action Buttons */}
           <div className="flex items-center space-x-2 md:space-x-4">
-            <SignedIn>
               <Link href="/chat">
                 <Button
                   variant="outline"
@@ -114,26 +112,6 @@ const Header = ({ user }) => {
                   </DropdownMenuItem>
                 </DropdownMenuContent>
               </DropdownMenu>
-            </SignedIn>
-
-            <SignedOut>
-              <SignInButton>
-                <Button variant="outline">Sign In</Button>
-              </SignInButton>
-            </SignedOut>
-
-            <SignedIn>
-              <UserButton
-                appearance={{
-                  elements: {
-                    avatarBox: "w-10 h-10",
-                    userButtonPopoverCard: "shadow-xl",
-                    userPreviewMainIdentifier: "font-semibold",
-                  },
-                }}
-                afterSignOutUrl="/"
-              />
-            </SignedIn>
           </div>
         </nav>
       </header>

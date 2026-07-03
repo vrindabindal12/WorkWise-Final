@@ -1,20 +1,14 @@
 "use server";
 
 import { db } from "../lib/prisma";
-import { auth } from "@clerk/nextjs/server";
+import { checkUser } from "../lib/checkUser";
 import { GoogleGenerativeAI } from "@google/generative-ai";
 
 const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
 const model = genAI.getGenerativeModel({ model: "gemini-2.5-flash" });
 
 export async function generateCoverLetter(data) {
-  const { userId } = await auth();
-  if (!userId) throw new Error("Unauthorized");
-
-  const user = await db.user.findUnique({
-    where: { clerkUserId: userId },
-  });
-
+  const user = await checkUser();
   if (!user) throw new Error("User not found");
 
   const prompt = `
@@ -66,13 +60,7 @@ export async function generateCoverLetter(data) {
 }
 
 export async function getCoverLetters() {
-  const { userId } = await auth();
-  if (!userId) throw new Error("Unauthorized");
-
-  const user = await db.user.findUnique({
-    where: { clerkUserId: userId },
-  });
-
+  const user = await checkUser();
   if (!user) throw new Error("User not found");
 
   return await db.coverLetter.findMany({
@@ -86,13 +74,7 @@ export async function getCoverLetters() {
 }
 
 export async function getCoverLetter(id) {
-  const { userId } = await auth();
-  if (!userId) throw new Error("Unauthorized");
-
-  const user = await db.user.findUnique({
-    where: { clerkUserId: userId },
-  });
-
+  const user = await checkUser();
   if (!user) throw new Error("User not found");
 
   return await db.coverLetter.findUnique({
@@ -104,13 +86,7 @@ export async function getCoverLetter(id) {
 }
 
 export async function deleteCoverLetter(id) {
-  const { userId } = await auth();
-  if (!userId) throw new Error("Unauthorized");
-
-  const user = await db.user.findUnique({
-    where: { clerkUserId: userId },
-  });
-
+  const user = await checkUser();
   if (!user) throw new Error("User not found");
 
   return await db.coverLetter.delete({
