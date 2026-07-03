@@ -146,9 +146,9 @@ export default function LandingPage() {
         </header>
 
         {/* Hero Content */}
-        <main className="relative z-10 flex-1 flex flex-col items-center justify-center px-6 py-12 text-center -translate-y-[20%]">
+        <main className="relative z-10 flex-1 flex flex-col items-center justify-center px-6 py-12 text-center md:-translate-y-[20%] -translate-y-4">
           <h1
-            className="text-3xl md:text-4xl lg:text-5xl text-white tracking-tight whitespace-nowrap mb-3 mt-4"
+            className="text-3xl md:text-4xl lg:text-5xl text-white tracking-tight whitespace-normal md:whitespace-nowrap mb-3 mt-4"
             style={{ fontFamily: "'Instrument Serif', serif" }}
           >
             Where <em className="italic font-normal text-white/70">careers</em> rise through <em className="italic font-normal text-white/70">intelligence.</em>
@@ -157,10 +157,16 @@ export default function LandingPage() {
           <p className="text-white/60 text-xs md:text-sm max-w-2xl mx-auto leading-relaxed">
             An AI-native career platform that eliminates guesswork, bringing radical clarity to your job search and accelerating your professional growth.
           </p>
+
+          <div className="mt-8 md:hidden">
+            <Link href="/dashboard" className="bg-white text-black px-8 py-3.5 rounded-full font-medium hover:bg-white/90 transition-colors shadow-[0_0_20px_rgba(255,255,255,0.2)] flex items-center gap-2">
+              Go to Dashboard <ArrowRight className="w-4 h-4" />
+            </Link>
+          </div>
         </main>
 
         {/* Bottom Right CTAs */}
-        <div className="absolute bottom-8 right-6 md:bottom-12 md:right-12 z-20 flex flex-col sm:flex-row items-end sm:items-center gap-4">
+        <div className="absolute bottom-8 right-6 md:bottom-12 md:right-12 z-20 hidden md:flex flex-col sm:flex-row items-end sm:items-center gap-4">
           <Link href="/dashboard" className="bg-white text-black px-8 py-3.5 rounded-full font-medium hover:bg-white/90 transition-colors shadow-[0_0_20px_rgba(255,255,255,0.2)] flex items-center gap-2">
             Go to Dashboard <ArrowRight className="w-4 h-4" />
           </Link>

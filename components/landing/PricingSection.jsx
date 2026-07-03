@@ -104,7 +104,7 @@ export default function PricingSection() {
                     </span>
                   )}
                 </div>
-                <p className="text-white/50 text-sm leading-relaxed h-10">{plan.description}</p>
+                <p className="text-white/50 text-sm leading-relaxed min-h-[3rem] md:min-h-[4rem] lg:min-h-[3rem]">{plan.description}</p>
               </div>
 
               <div className="mb-8 flex items-baseline gap-2 border-b border-white/10 pb-8">

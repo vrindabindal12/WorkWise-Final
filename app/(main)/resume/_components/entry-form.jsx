@@ -139,7 +139,7 @@ export function EntryForm({ type, entries, onChange }) {
             <CardTitle>Add {type}</CardTitle>
           </CardHeader>
           <CardContent className="space-y-4">
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div className="space-y-2">
                 <Input
                   placeholder="Title/Position"
@@ -164,7 +164,7 @@ export function EntryForm({ type, entries, onChange }) {
               </div>
             </div>
 
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div className="space-y-2">
                 <Input
                   type="month"

@@ -117,9 +117,9 @@ const DashboardView = ({ insights }) => {
               {insights.growthRate.toFixed(1)}%
             </div>
             <div className="h-1.5 w-full bg-white/10 rounded-full overflow-hidden">
-              <div 
-                className="h-full bg-sky-400 rounded-full shadow-[0_0_10px_rgba(56,189,248,0.5)]" 
-                style={{ width: `${Math.min(100, Math.max(0, insights.growthRate * 5))}%` }} 
+              <div
+                className="h-full bg-sky-400 rounded-full shadow-[0_0_10px_rgba(56,189,248,0.5)]"
+                style={{ width: `${Math.min(100, Math.max(0, insights.growthRate * 5))}%` }}
               />
             </div>
           </CardContent>
@@ -176,9 +176,9 @@ const DashboardView = ({ insights }) => {
             <ResponsiveContainer width="100%" height="100%">
               <BarChart data={salaryData} margin={{ top: 20, right: 30, left: 20, bottom: 60 }}>
                 <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.05)" vertical={false} />
-                <XAxis 
-                  dataKey="name" 
-                  stroke="rgba(255,255,255,0.3)" 
+                <XAxis
+                  dataKey="name"
+                  stroke="rgba(255,255,255,0.3)"
                   tick={{ fill: 'rgba(255,255,255,0.5)', fontSize: 12 }}
                   tickLine={false}
                   axisLine={{ stroke: 'rgba(255,255,255,0.1)' }}
@@ -186,8 +186,8 @@ const DashboardView = ({ insights }) => {
                   textAnchor="end"
                   height={80}
                 />
-                <YAxis 
-                  stroke="rgba(255,255,255,0.3)" 
+                <YAxis
+                  stroke="rgba(255,255,255,0.3)"
                   tick={{ fill: 'rgba(255,255,255,0.5)', fontSize: 12 }}
                   tickLine={false}
                   axisLine={{ stroke: 'rgba(255,255,255,0.1)' }}
@@ -255,8 +255,8 @@ const DashboardView = ({ insights }) => {
           <CardContent>
             <div className="flex flex-wrap gap-3">
               {insights.recommendedSkills.map((skill) => (
-                <Badge 
-                  key={skill} 
+                <Badge
+                  key={skill}
                   variant="outline"
                   className="px-4 py-2 bg-white/5 hover:bg-white/10 border-white/10 text-white/80 font-normal hover:border-white/30 transition-all text-sm rounded-xl whitespace-normal text-left h-auto"
                 >

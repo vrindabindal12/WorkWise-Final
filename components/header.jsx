@@ -33,12 +33,12 @@ const Header = ({ user }) => {
     <>
       <header className="fixed top-0 w-full z-50 px-4 py-4 md:py-6 pointer-events-none">
         <nav className="liquid-glass rounded-full max-w-7xl mx-auto px-6 py-3 flex items-center justify-between pointer-events-auto">
-          <div className="flex items-center">
-            <Globe className="text-white w-6 h-6 mr-3" />
-            <Link href="/" className="text-white font-semibold text-lg">
+          <Link href="/" className="flex items-center text-white">
+            <Globe className="w-6 h-6 mr-2 shrink-0" />
+            <span className="font-semibold text-lg hidden sm:inline">
               WorkWise
-            </Link>
-          </div>
+            </span>
+          </Link>
 
           {/* Action Buttons */}
           <div className="flex items-center space-x-2 md:space-x-4">
