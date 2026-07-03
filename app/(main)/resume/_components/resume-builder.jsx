@@ -22,7 +22,6 @@ import { EntryForm } from "./entry-form";
 import useFetch from "../../../../hooks/use-fetch";
 import { entriesToMarkdown } from "../../../../app/lib/helper";
 import { resumeSchema } from "../../../../app/lib/schema";
-import html2pdf from "html2pdf.js";
 
 
 export default function ResumeBuilder({ initialContent }) {
@@ -123,6 +122,7 @@ export default function ResumeBuilder({ initialContent }) {
         jsPDF: { unit: "mm", format: "a4", orientation: "portrait" },
       };
 
+      const html2pdf = (await import("html2pdf.js")).default;
       await html2pdf().set(opt).from(element).save();
     } catch (error) {
       console.error("PDF generation error:", error);
