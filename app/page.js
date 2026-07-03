@@ -8,7 +8,6 @@ import AboutSection from "../components/landing/AboutSection";
 import FeaturesGridSection from "../components/landing/FeaturesGridSection";
 import FeatureZigZag from "../components/landing/FeatureZigZag";
 import PricingSection from "../components/landing/PricingSection";
-import Footer from "../components/landing/Footer";
 import LogoTicker from "../components/landing/LogoTicker";
 import FaqSection from "../components/landing/FaqSection";
 
@@ -176,8 +175,6 @@ export default function LandingPage() {
 
       <PricingSection />
       <FaqSection />
-
-      <Footer />
     </div>
   );
 }
