@@ -9,7 +9,7 @@ const Peer = dynamic(() => import("peerjs"), { ssr: false });
 const mentors = [
   { id: "mentor1", name: "Vrinda", linkedin: "https://www.linkedin.com/in/vrinda-bindal-55b645349/", Designation: "Software Engineer" },
   { id: "mentor2", name: "Ravi", linkedin: "https://www.linkedin.com/in/ravi-beniwal-342906274/", Designation: "Reserach Intern" },
-  { id: "mentor3", name: "Nittish", linkedin: "https://www.linkedin.com/in/nittish-baboria/", Designation: "Business Analyst" },
+  { id: "mentor3", name: "Nittish", linkedin: "https://www.linkedin.com/in/nittish-baboria/", Designation: "Business Aanlyst" },
 ];
 
 export default function VideoCall() {
@@ -81,19 +81,19 @@ export default function VideoCall() {
           Live <em className="italic font-normal text-white/70">Mentorship</em>
         </h1>
         <p className="text-white/50 text-base max-w-md mx-auto">
-          Establish secure, encrypted text connections directly with industry mentors.
+          Establish secure, low-latency WebRTC connections directly with industry mentors.
         </p>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-4 gap-6 w-full">
-        {/* Left Column: Connection & Network */}
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 w-full">
+        {/* Left Column: Connection & Chat */}
         <div className="lg:col-span-1 flex flex-col gap-6">
           {/* Your ID Card */}
           <div className="liquid-glass p-6 rounded-3xl border border-white/10 relative overflow-hidden group">
             <h3 className="text-white/60 text-sm font-medium uppercase tracking-wider mb-3">Your Routing ID</h3>
             <div className="flex items-center gap-3 bg-black/40 border border-white/5 p-3 rounded-xl overflow-hidden">
               <code className="text-white/90 text-xs truncate flex-1">{peerId || "Generating..."}</code>
-              <button 
+              <button
                 onClick={() => navigator.clipboard.writeText(peerId)}
                 className="text-white/50 hover:text-white transition-colors p-1 bg-white/5 rounded-md border border-white/10 hover:bg-white/10"
                 title="Copy ID"
@@ -108,96 +108,112 @@ export default function VideoCall() {
           <div className="liquid-glass p-6 rounded-3xl border border-white/10 relative overflow-hidden">
             <h3 className="text-white/60 text-sm font-medium uppercase tracking-wider mb-4">Establish Connection</h3>
             <div className="flex flex-col gap-3">
-              <input 
-                type="text" 
-                placeholder="Enter Peer ID..." 
-                value={otherPeerId} 
-                onChange={(e) => setOtherPeerId(e.target.value)} 
+              <input
+                type="text"
+                placeholder="Enter Peer ID..."
+                value={otherPeerId}
+                onChange={(e) => setOtherPeerId(e.target.value)}
                 className="w-full bg-black/40 border border-white/10 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-white/30 transition-colors"
               />
-              <button 
-                onClick={connectToPeer} 
-                className="w-full bg-emerald-500/10 text-emerald-400 font-medium py-3 rounded-xl hover:bg-emerald-500/20 transition-colors flex items-center justify-center gap-2 border border-emerald-500/20 hover:border-emerald-500/30"
+              <button
+                onClick={connectToPeer}
+                className="w-full bg-white text-black font-medium py-3 rounded-xl hover:bg-white/90 transition-colors flex items-center justify-center gap-2"
               >
-                <MessageSquare className="w-4 h-4" /> Connect Now
+                <Video className="w-4 h-4" /> Connect Now
               </button>
             </div>
           </div>
 
-          {/* Mentors Network Mini-List */}
-          <div className="liquid-glass p-6 rounded-3xl border border-white/10 relative overflow-hidden flex-1">
-            <h3 className="text-white/60 text-sm font-medium uppercase tracking-wider mb-4">Active Mentors</h3>
-            <div className="flex flex-col gap-3">
-              {mentors.map((mentor) => (
-                <div key={mentor.id} className="bg-black/40 border border-white/5 rounded-xl p-3 flex items-center justify-between group/mentor hover:border-white/20 transition-all">
-                  <div>
-                    <h4 className="text-white text-sm font-medium">{mentor.name}</h4>
-                    <p className="text-white/40 text-[10px] uppercase tracking-wider mt-1">{mentor.Designation}</p>
-                  </div>
-                  <div className="flex gap-1.5">
-                    <a href={mentor.linkedin} target="_blank" rel="noopener noreferrer" className="p-1.5 bg-white/5 rounded-lg hover:bg-white/10 text-white/40 hover:text-blue-400 transition-colors" title="LinkedIn">
-                      <Linkedin className="w-3.5 h-3.5" />
-                    </a>
-                    <button 
-                      onClick={() => { setOtherPeerId(mentor.id); window.scrollTo({ top: 0, behavior: 'smooth' }); }}
-                      className="p-1.5 bg-white/5 rounded-lg hover:bg-white/10 text-white/40 hover:text-white transition-colors"
-                      title="Use ID"
-                    >
-                      <Copy className="w-3.5 h-3.5" />
-                    </button>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-
-        {/* Right Column: Encrypted Chat Area */}
-        <div className="lg:col-span-3 flex flex-col gap-6">
-          <div className="liquid-glass p-4 rounded-3xl border border-white/10 h-full flex flex-col relative min-h-[500px]">
-            <div className="flex items-center gap-2 px-4 py-3 border-b border-white/5 mb-4">
-              <MessageSquare className="w-5 h-5 text-white/60" />
-              <h2 className="text-lg text-white font-medium">Encrypted Chat</h2>
-              <span className="ml-auto flex items-center gap-2 text-xs font-medium text-emerald-400 bg-emerald-400/10 px-3 py-1 rounded-full border border-emerald-400/20">
-                <div className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" /> End-to-End Encrypted
-              </span>
-            </div>
-
-            <div className="flex-1 bg-black/40 border border-white/5 rounded-2xl p-6 overflow-y-auto mb-4 flex flex-col gap-4 shadow-inner">
+          {/* Chat Window */}
+          <div className="liquid-glass p-6 rounded-3xl border border-white/10 relative overflow-hidden flex flex-col h-[400px]">
+            <h3 className="text-white/60 text-sm font-medium uppercase tracking-wider mb-4">Encrypted Chat</h3>
+            <div className="flex-1 bg-black/40 border border-white/5 rounded-xl p-4 overflow-y-auto mb-4 flex flex-col gap-3">
               {messages.length === 0 ? (
                 <div className="m-auto text-center text-white/30 text-sm flex flex-col items-center">
-                  <MessageSquare className="w-12 h-12 mb-4 opacity-20" />
-                  <p className="text-lg font-medium tracking-wide">Awaiting Connection...</p>
-                  <p className="text-xs mt-2 max-w-xs">Enter a Peer ID on the left to establish a secure chat session.</p>
+                  <MessageSquare className="w-8 h-8 mb-2 opacity-30" />
+                  No messages yet.
                 </div>
               ) : (
                 messages.map((msg, index) => (
                   <div key={index} className={`flex flex-col ${msg.sender === "You" ? "items-end" : "items-start"}`}>
-                    <span className="text-[10px] text-white/40 uppercase tracking-widest mb-1.5 px-2">{msg.sender}</span>
-                    <div className={`px-5 py-3 rounded-2xl text-sm max-w-[85%] leading-relaxed shadow-lg ${msg.sender === "You" ? "bg-white text-black rounded-tr-sm" : "bg-black/60 text-white rounded-tl-sm border border-white/10"}`}>
+                    <span className="text-[10px] text-white/30 uppercase tracking-wider mb-1 px-1">{msg.sender}</span>
+                    <div className={`px-4 py-2.5 rounded-2xl text-sm max-w-[85%] leading-relaxed ${msg.sender === "You" ? "bg-white text-black rounded-tr-sm" : "bg-white/10 text-white rounded-tl-sm border border-white/5"}`}>
                       {msg.text}
                     </div>
                   </div>
                 ))
               )}
             </div>
-            
-            <div className="flex gap-3">
-              <input 
-                type="text" 
-                value={message} 
-                onChange={(e) => setMessage(e.target.value)} 
+            <div className="flex gap-2">
+              <input
+                type="text"
+                value={message}
+                onChange={(e) => setMessage(e.target.value)}
                 onKeyDown={(e) => e.key === 'Enter' && sendMessage()}
-                placeholder="Type your message..." 
-                className="flex-1 bg-black/40 border border-white/10 rounded-2xl px-6 py-4 text-sm text-white focus:outline-none focus:border-emerald-500/50 focus:ring-1 focus:ring-emerald-500/50 transition-all shadow-inner"
+                placeholder="Type payload..."
+                className="flex-1 bg-black/40 border border-white/10 rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none focus:border-white/30 transition-colors"
               />
-              <button 
-                onClick={sendMessage} 
-                className="bg-white hover:bg-white/90 text-black px-6 rounded-2xl transition-all shadow-lg flex items-center justify-center gap-2 group font-medium"
+              <button
+                onClick={sendMessage}
+                className="bg-white/10 hover:bg-white/20 text-white p-3 rounded-xl transition-colors border border-white/5"
               >
-                <span className="hidden sm:inline">Send</span>
-                <Send className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                <Send className="w-4 h-4" />
               </button>
+            </div>
+          </div>
+        </div>
+
+        {/* Right Column: Mentors Network */}
+        <div className="lg:col-span-2">
+          <div className="liquid-glass p-6 md:p-8 rounded-3xl border border-white/10 h-full">
+            <div className="flex items-center justify-between mb-8">
+              <h2 className="text-3xl text-white tracking-tight" style={{ fontFamily: "'Instrument Serif', serif" }}>
+                Active Network
+              </h2>
+              <span className="flex items-center gap-2 text-xs font-medium text-emerald-400 bg-emerald-400/10 px-3 py-1.5 rounded-full border border-emerald-400/20">
+                <div className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+                {mentors.length} Online
+              </span>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              {mentors.map((mentor) => (
+                <div key={mentor.id} className="bg-black/40 border border-white/5 rounded-2xl p-5 hover:border-white/20 transition-all group flex flex-col justify-between shadow-[0_0_20px_rgba(255,255,255,0.01)] hover:shadow-[0_0_30px_rgba(255,255,255,0.03)]">
+                  <div>
+                    <div className="flex justify-between items-start mb-4">
+                      <div>
+                        <h3 className="text-white font-semibold text-lg">{mentor.name}</h3>
+                        <p className="text-white/50 text-sm">{mentor.Designation}</p>
+                      </div>
+                      <a
+                        href={mentor.linkedin}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-white/30 hover:text-blue-400 transition-colors p-2 bg-white/5 rounded-full hover:bg-white/10"
+                        title="LinkedIn Profile"
+                      >
+                        <Linkedin className="w-4 h-4" />
+                      </a>
+                    </div>
+                  </div>
+                  <button
+                    onClick={() => {
+                      setOtherPeerId(mentor.id);
+                      window.scrollTo({ top: 0, behavior: 'smooth' });
+                    }}
+                    className="w-full mt-4 py-2.5 rounded-xl border border-white/10 text-white/70 text-sm font-medium hover:bg-white hover:text-black transition-all group-hover:border-white/30 flex items-center justify-center gap-2"
+                  >
+                    <Copy className="w-4 h-4" /> Use Routing ID
+                  </button>
+                </div>
+              ))}
+            </div>
+
+            {/* Disclaimer / Info */}
+            <div className="mt-8 pt-8 border-t border-white/5 text-center">
+              <p className="text-white/40 text-sm max-w-lg mx-auto leading-relaxed">
+                Our WebRTC architecture ensures that your calls and messages are strictly peer-to-peer. No data touches our servers during your mentorship session.
+              </p>
             </div>
           </div>
         </div>

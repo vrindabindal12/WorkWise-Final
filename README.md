@@ -20,6 +20,15 @@ This repository serves as a demonstration of advanced system design, scalable fu
 
 ---
 
+## Core Platform Capabilities
+
+- **Real-Time Interview Simulation**: Implements low-latency, role-specific mock interviews, delivering instantaneous and actionable feedback to candidates.
+- **Data-Driven Market Analytics**: Aggregates and visualizes real-time industry trends, compensation medians, and skill-demand metrics.
+- **Algorithmic Resume Generation**: Dynamically generates ATS-optimized, pixel-perfect resumes by leveraging advanced markdown parsing and AI assistance.
+- **Context-Aware Document Synthesis**: Utilizes Generative AI to contextually fuse user profiles with target job descriptions, programmatically producing highly targeted cover letters.
+
+---
+
 ## Technical Architecture & Core Complexity
 
 WorkWise was engineered to solve complex state management and asynchronous processing challenges common in AI-heavy applications. The architecture relies on several advanced paradigms to maintain high availability and a seamless user experience.
