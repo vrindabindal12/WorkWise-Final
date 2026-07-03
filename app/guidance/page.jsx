@@ -17,43 +17,144 @@ export default function VideoCall() {
   const remoteVideoRef = useRef(null);
   const [peerId, setPeerId] = useState("");
   const [otherPeerId, setOtherPeerId] = useState("");
+  const [peerStatus, setPeerStatus] = useState("disconnected"); // disconnected, connecting, ready, calling, connected, error
+  const [errorMessage, setErrorMessage] = useState("");
   const peerInstance = useRef(null);
 
   useEffect(() => {
     const initializePeer = async () => {
-      const PeerJS = (await import("peerjs")).default;
-      peerInstance.current = new PeerJS();
+      try {
+        setPeerStatus("connecting");
+        setErrorMessage("");
+        const PeerJS = (await import("peerjs")).default;
 
-      peerInstance.current.on("open", (id) => {
-        setPeerId(id);
-        console.log("Your Peer ID:", id);
-      });
-
-      peerInstance.current.on("call", async (call) => {
-        const stream = await navigator.mediaDevices.getUserMedia({ video: true, audio: true });
-        localVideoRef.current.srcObject = stream;
-        call.answer(stream);
-
-        call.on("stream", (remoteStream) => {
-          remoteVideoRef.current.srcObject = remoteStream;
+        // Explicit WebRTC parameters to ensure robust connections (STUN servers & config structure for TURN)
+        peerInstance.current = new PeerJS(undefined, {
+          host: "0.peerjs.com",
+          port: 443,
+          path: "/",
+          secure: true,
+          config: {
+            iceServers: [
+              { urls: "stun:stun.l.google.com:19302" },
+              { urls: "stun:stun1.l.google.com:19302" },
+              { urls: "stun:stun2.l.google.com:19302" },
+              { urls: "stun:stun3.l.google.com:19302" },
+              { urls: "stun:stun4.l.google.com:19302" },
+            ],
+            sdpSemantics: "unified-plan"
+          }
         });
-      });
+
+        peerInstance.current.on("open", (id) => {
+          setPeerId(id);
+          setPeerStatus("ready");
+          setErrorMessage("");
+          console.log("Your Peer ID:", id);
+        });
+
+        peerInstance.current.on("call", async (call) => {
+          try {
+            setPeerStatus("calling");
+            const stream = await navigator.mediaDevices.getUserMedia({ video: true, audio: true });
+            localVideoRef.current.srcObject = stream;
+            call.answer(stream);
+
+            call.on("stream", (remoteStream) => {
+              remoteVideoRef.current.srcObject = remoteStream;
+              setPeerStatus("connected");
+            });
+
+            call.on("close", () => {
+              setPeerStatus("ready");
+            });
+
+            call.on("error", (err) => {
+              console.error("Inbound Call stream error:", err);
+              setErrorMessage(err.message || "Error with remote video stream.");
+              setPeerStatus("error");
+            });
+          } catch (err) {
+            console.error("Camera access failed on incoming call:", err);
+            setErrorMessage("Failed to access camera/mic for incoming call.");
+            setPeerStatus("error");
+          }
+        });
+
+        peerInstance.current.on("error", (err) => {
+          console.error("PeerJS Error:", err);
+          setPeerStatus("error");
+          let msg = err.message || "Unknown signaling/connection error.";
+          if (err.type === "peer-unavailable") {
+            msg = `Peer ID "${otherPeerId || 'input'}" could not be reached. Ensure they are online and their ID is correct.`;
+          } else if (err.type === "network") {
+            msg = "Signaling network error. The public PeerJS cloud server might be down or blocked by your firewall/network.";
+          } else if (err.type === "server-error") {
+            msg = "PeerJS signaling server returned an error.";
+          }
+          setErrorMessage(msg);
+        });
+
+        peerInstance.current.on("disconnected", () => {
+          console.warn("Disconnected from PeerJS server. Retrying connection...");
+          setPeerStatus("disconnected");
+          peerInstance.current.reconnect();
+        });
+
+        peerInstance.current.on("close", () => {
+          console.log("Peer connection closed.");
+          setPeerStatus("disconnected");
+        });
+
+      } catch (err) {
+        console.error("Failed to initialize PeerJS:", err);
+        setPeerStatus("error");
+        setErrorMessage("Could not load/initialize the PeerJS library.");
+      }
     };
 
     initializePeer();
+
+    return () => {
+      if (peerInstance.current) {
+        peerInstance.current.destroy();
+      }
+    };
   }, []);
 
   const startCall = async () => {
     if (!otherPeerId) return alert("Enter a valid Peer ID!");
 
-    const stream = await navigator.mediaDevices.getUserMedia({ video: true, audio: true });
-    localVideoRef.current.srcObject = stream;
+    try {
+      setPeerStatus("calling");
+      setErrorMessage("");
+      const stream = await navigator.mediaDevices.getUserMedia({ video: true, audio: true });
+      localVideoRef.current.srcObject = stream;
 
-    const call = peerInstance.current.call(otherPeerId, stream);
+      const call = peerInstance.current.call(otherPeerId, stream);
+      if (!call) {
+        throw new Error("Failed to create call connection.");
+      }
 
-    call.on("stream", (remoteStream) => {
-      remoteVideoRef.current.srcObject = remoteStream;
-    });
+      call.on("stream", (remoteStream) => {
+        remoteVideoRef.current.srcObject = remoteStream;
+        setPeerStatus("connected");
+      });
+
+      call.on("close", () => {
+        setPeerStatus("ready");
+      });
+
+      call.on("error", (err) => {
+        console.error("Call error:", err);
+        setErrorMessage(err.message || "Error occurred during call.");
+        setPeerStatus("error");
+      });
+    } catch (err) {
+      console.error("Media access or outgoing call failed:", err);
+      setErrorMessage("Could not access camera/microphone or initiate call.");
+      setPeerStatus("error");
+    }
   };
 
   return (
@@ -79,14 +180,33 @@ export default function VideoCall() {
             <h3 className="text-white/60 text-sm font-medium uppercase tracking-wider mb-3">Your Routing ID</h3>
             <div className="flex items-center gap-3 bg-black/40 border border-white/5 p-3 rounded-xl overflow-hidden">
               <code className="text-white/90 text-xs truncate flex-1">{peerId || "Generating..."}</code>
-              <button 
-                onClick={() => navigator.clipboard.writeText(peerId)}
+              <button
+                onClick={() => peerId && navigator.clipboard.writeText(peerId)}
                 className="text-white/50 hover:text-white transition-colors p-1 bg-white/5 rounded-md border border-white/10 hover:bg-white/10"
                 title="Copy ID"
+                disabled={!peerId}
               >
                 <Copy className="w-4 h-4" />
               </button>
             </div>
+
+            <div className="flex items-center gap-2 mt-3">
+              <span className={`w-2 h-2 rounded-full ${peerStatus === "ready" ? "bg-emerald-500 animate-pulse" :
+                  peerStatus === "connected" ? "bg-blue-500" :
+                    peerStatus === "calling" ? "bg-amber-500 animate-bounce" :
+                      peerStatus === "error" ? "bg-rose-500" : "bg-zinc-500"
+                }`} />
+              <span className="text-xs text-white/60 font-medium capitalize">
+                Status: {peerStatus === "ready" ? "Ready (Online)" : peerStatus}
+              </span>
+            </div>
+
+            {errorMessage && (
+              <div className="mt-3 text-[11px] leading-relaxed text-rose-400 bg-rose-500/10 border border-rose-500/20 p-2.5 rounded-xl">
+                {errorMessage}
+              </div>
+            )}
+
             <p className="text-white/40 text-xs mt-4 leading-relaxed">Share this ID securely with a mentor to receive incoming calls.</p>
           </div>
 
@@ -94,15 +214,15 @@ export default function VideoCall() {
           <div className="liquid-glass p-6 rounded-3xl border border-white/10 relative overflow-hidden">
             <h3 className="text-white/60 text-sm font-medium uppercase tracking-wider mb-4">Dial Peer</h3>
             <div className="flex flex-col gap-3">
-              <input 
-                type="text" 
-                placeholder="Enter Peer ID..." 
-                value={otherPeerId} 
-                onChange={(e) => setOtherPeerId(e.target.value)} 
+              <input
+                type="text"
+                placeholder="Enter Peer ID..."
+                value={otherPeerId}
+                onChange={(e) => setOtherPeerId(e.target.value)}
                 className="w-full bg-black/40 border border-white/10 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-white/30 transition-colors"
               />
-              <button 
-                onClick={startCall} 
+              <button
+                onClick={startCall}
                 className="w-full bg-emerald-500/10 text-emerald-400 font-medium py-3 rounded-xl hover:bg-emerald-500/20 transition-colors flex items-center justify-center gap-2 border border-emerald-500/20 hover:border-emerald-500/30"
               >
                 <Video className="w-4 h-4" /> Start Video Call
@@ -124,7 +244,7 @@ export default function VideoCall() {
                     <a href={mentor.linkedin} target="_blank" rel="noopener noreferrer" className="p-1.5 bg-white/5 rounded-lg hover:bg-white/10 text-white/40 hover:text-blue-400 transition-colors" title="LinkedIn">
                       <Linkedin className="w-3.5 h-3.5" />
                     </a>
-                    <button 
+                    <button
                       onClick={() => { setOtherPeerId(mentor.id); window.scrollTo({ top: 0, behavior: 'smooth' }); }}
                       className="p-1.5 bg-white/5 rounded-lg hover:bg-white/10 text-white/40 hover:text-white transition-colors"
                       title="Use ID"
@@ -174,7 +294,7 @@ export default function VideoCall() {
                 </div>
               </div>
             </div>
-            
+
           </div>
         </div>
       </div>

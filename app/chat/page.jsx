@@ -17,6 +17,8 @@ export default function VideoCall() {
   const remoteVideoRef = useRef(null);
   const [peerId, setPeerId] = useState("");
   const [otherPeerId, setOtherPeerId] = useState("");
+  const [peerStatus, setPeerStatus] = useState("disconnected"); // disconnected, connecting, ready, connected, error
+  const [errorMessage, setErrorMessage] = useState("");
   const peerInstance = useRef(null);
   const connRef = useRef(null);
   const [messages, setMessages] = useState([]);
@@ -24,48 +26,155 @@ export default function VideoCall() {
 
   useEffect(() => {
     const initializePeer = async () => {
-      const PeerJS = (await import("peerjs")).default;
-      peerInstance.current = new PeerJS();
+      try {
+        setPeerStatus("connecting");
+        setErrorMessage("");
+        const PeerJS = (await import("peerjs")).default;
 
-      peerInstance.current.on("open", (id) => {
-        setPeerId(id);
-        console.log("Your Peer ID:", id);
-      });
-
-      peerInstance.current.on("call", async (call) => {
-        const stream = await navigator.mediaDevices.getUserMedia({ video: true, audio: true });
-        localVideoRef.current.srcObject = stream;
-        call.answer(stream);
-
-        call.on("stream", (remoteStream) => {
-          remoteVideoRef.current.srcObject = remoteStream;
+        // Explicit WebRTC parameters to ensure robust connections (STUN servers & config structure for TURN)
+        peerInstance.current = new PeerJS(undefined, {
+          host: "0.peerjs.com",
+          port: 443,
+          path: "/",
+          secure: true,
+          config: {
+            iceServers: [
+              { urls: "stun:stun.l.google.com:19302" },
+              { urls: "stun:stun1.l.google.com:19302" },
+              { urls: "stun:stun2.l.google.com:19302" },
+              { urls: "stun:stun3.l.google.com:19302" },
+              { urls: "stun:stun4.l.google.com:19302" },
+            ],
+            sdpSemantics: "unified-plan"
+          }
         });
-      });
 
-      peerInstance.current.on("connection", (conn) => {
-        connRef.current = conn;
-        conn.on("data", (data) => {
-          setMessages((prev) => [...prev, { sender: "Peer", text: data }]);
+        peerInstance.current.on("open", (id) => {
+          setPeerId(id);
+          setPeerStatus("ready");
+          setErrorMessage("");
+          console.log("Your Peer ID:", id);
         });
-      });
+
+        peerInstance.current.on("call", async (call) => {
+          try {
+            const stream = await navigator.mediaDevices.getUserMedia({ video: true, audio: true });
+            if (localVideoRef.current) localVideoRef.current.srcObject = stream;
+            call.answer(stream);
+
+            call.on("stream", (remoteStream) => {
+              if (remoteVideoRef.current) remoteVideoRef.current.srcObject = remoteStream;
+            });
+          } catch (err) {
+            console.error("Failed to answer incoming call on chat page:", err);
+          }
+        });
+
+        peerInstance.current.on("connection", (conn) => {
+          connRef.current = conn;
+          setPeerStatus("connected");
+
+          conn.on("open", () => {
+            console.log("Incoming connection established with:", conn.peer);
+          });
+
+          conn.on("data", (data) => {
+            setMessages((prev) => [...prev, { sender: "Peer", text: data }]);
+          });
+
+          conn.on("close", () => {
+            setPeerStatus("ready");
+            connRef.current = null;
+          });
+
+          conn.on("error", (err) => {
+            console.error("Incoming data connection error:", err);
+            setPeerStatus("error");
+            setErrorMessage("Incoming connection error.");
+          });
+        });
+
+        peerInstance.current.on("error", (err) => {
+          console.error("PeerJS Error:", err);
+          setPeerStatus("error");
+          let msg = err.message || "Unknown signaling/connection error.";
+          if (err.type === "peer-unavailable") {
+            msg = `Peer ID "${otherPeerId || 'input'}" could not be reached. Ensure they are online and their ID is correct.`;
+          } else if (err.type === "network") {
+            msg = "Signaling network error. The public PeerJS cloud server might be down or blocked by your firewall/network.";
+          } else if (err.type === "server-error") {
+            msg = "PeerJS signaling server returned an error.";
+          }
+          setErrorMessage(msg);
+        });
+
+        peerInstance.current.on("disconnected", () => {
+          console.warn("Disconnected from PeerJS server. Retrying connection...");
+          setPeerStatus("disconnected");
+          peerInstance.current.reconnect();
+        });
+
+        peerInstance.current.on("close", () => {
+          console.log("Peer connection closed.");
+          setPeerStatus("disconnected");
+        });
+
+      } catch (err) {
+        console.error("Failed to initialize PeerJS:", err);
+        setPeerStatus("error");
+        setErrorMessage("Could not load/initialize the PeerJS library.");
+      }
     };
 
     initializePeer();
+
+    return () => {
+      if (peerInstance.current) {
+        peerInstance.current.destroy();
+      }
+    };
   }, []);
 
   const connectToPeer = () => {
     if (!otherPeerId) return alert("Enter a valid Peer ID!");
-    const conn = peerInstance.current.connect(otherPeerId);
-    connRef.current = conn;
-    conn.on("data", (data) => {
-      setMessages((prev) => [...prev, { sender: "Peer", text: data }]);
-    });
+    setPeerStatus("connecting");
+    setErrorMessage("");
+
+    try {
+      const conn = peerInstance.current.connect(otherPeerId);
+      connRef.current = conn;
+
+      conn.on("open", () => {
+        setPeerStatus("connected");
+        console.log("Connection established with peer:", otherPeerId);
+      });
+
+      conn.on("data", (data) => {
+        setMessages((prev) => [...prev, { sender: "Peer", text: data }]);
+      });
+
+      conn.on("close", () => {
+        setPeerStatus("ready");
+        connRef.current = null;
+      });
+
+      conn.on("error", (err) => {
+        console.error("Data connection error:", err);
+        setErrorMessage(err.message || "Connection error with peer.");
+        setPeerStatus("error");
+        connRef.current = null;
+      });
+    } catch (err) {
+      console.error("Connection initiation failed:", err);
+      setErrorMessage("Could not initiate connection to peer.");
+      setPeerStatus("error");
+    }
   };
 
   const sendMessage = () => {
     if (message.trim() !== "" && connRef.current) {
       connRef.current.send(message);
-      setMessages([...messages, { sender: "You", text: message }]);
+      setMessages((prev) => [...prev, { sender: "You", text: message }]);
       setMessage("");
     }
   };
@@ -94,13 +203,32 @@ export default function VideoCall() {
             <div className="flex items-center gap-3 bg-black/40 border border-white/5 p-3 rounded-xl overflow-hidden">
               <code className="text-white/90 text-xs truncate flex-1">{peerId || "Generating..."}</code>
               <button
-                onClick={() => navigator.clipboard.writeText(peerId)}
+                onClick={() => peerId && navigator.clipboard.writeText(peerId)}
                 className="text-white/50 hover:text-white transition-colors p-1 bg-white/5 rounded-md border border-white/10 hover:bg-white/10"
                 title="Copy ID"
+                disabled={!peerId}
               >
                 <Copy className="w-4 h-4" />
               </button>
             </div>
+
+            <div className="flex items-center gap-2 mt-3">
+              <span className={`w-2 h-2 rounded-full ${peerStatus === "ready" ? "bg-emerald-500 animate-pulse" :
+                  peerStatus === "connected" ? "bg-blue-500" :
+                    peerStatus === "connecting" ? "bg-amber-500 animate-bounce" :
+                      peerStatus === "error" ? "bg-rose-500" : "bg-zinc-500"
+                }`} />
+              <span className="text-xs text-white/60 font-medium capitalize">
+                Status: {peerStatus === "ready" ? "Ready (Online)" : peerStatus}
+              </span>
+            </div>
+
+            {errorMessage && (
+              <div className="mt-3 text-[11px] leading-relaxed text-rose-400 bg-rose-500/10 border border-rose-500/20 p-2.5 rounded-xl">
+                {errorMessage}
+              </div>
+            )}
+
             <p className="text-white/40 text-xs mt-4 leading-relaxed">Share this ID securely with a mentor to receive incoming connections.</p>
           </div>
 
