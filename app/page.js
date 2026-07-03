@@ -147,13 +147,13 @@ export default function LandingPage() {
         {/* Hero Content */}
         <main className="relative z-10 flex-1 flex flex-col items-center justify-center px-6 py-12 text-center -translate-y-[20%]">
           <h1
-            className="text-4xl md:text-5xl lg:text-6xl text-white tracking-tight whitespace-nowrap mb-3 mt-4"
+            className="text-3xl md:text-4xl lg:text-5xl text-white tracking-tight whitespace-nowrap mb-3 mt-4"
             style={{ fontFamily: "'Instrument Serif', serif" }}
           >
             Where <em className="italic font-normal text-white/70">careers</em> rise through <em className="italic font-normal text-white/70">intelligence.</em>
           </h1>
 
-          <p className="text-white/60 text-sm md:text-base max-w-2xl mx-auto leading-relaxed">
+          <p className="text-white/60 text-xs md:text-sm max-w-2xl mx-auto leading-relaxed">
             An AI-native career platform that eliminates guesswork, bringing radical clarity to your job search and accelerating your professional growth.
           </p>
         </main>
