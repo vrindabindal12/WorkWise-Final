@@ -10,6 +10,7 @@ import FeatureZigZag from "../components/landing/FeatureZigZag";
 import PricingSection from "../components/landing/PricingSection";
 import LogoTicker from "../components/landing/LogoTicker";
 import FaqSection from "../components/landing/FaqSection";
+import Footer from "../components/landing/Footer";
 
 export default function LandingPage() {
   const videoRef = useRef(null);
@@ -175,6 +176,7 @@ export default function LandingPage() {
 
       <PricingSection />
       <FaqSection />
+      <Footer />
     </div>
   );
 }
