@@ -112,11 +112,11 @@ export default function LandingPage() {
         </video>
 
         {/* Navbar */}
-        <header className="fixed top-0 left-0 right-0 z-50 px-6 py-4 md:py-6 w-full pointer-events-none">
-          <nav className="liquid-glass rounded-full max-w-5xl mx-auto px-6 py-3 flex justify-between items-center pointer-events-auto">
+        <header className="fixed top-0 left-0 right-0 z-50 px-6 py-2 md:py-4 w-full pointer-events-none">
+          <nav className="liquid-glass rounded-full max-w-5xl mx-auto px-6 py-1.5 flex justify-between items-center pointer-events-auto">
             {/* Left */}
             <div className="flex items-center">
-              <Globe className="text-white w-6 h-6 mr-3" />
+              <Globe className="text-white w-5 h-5 mr-3" />
               <Link href="/" className="text-white font-semibold text-lg">
                 WorkWise
               </Link>
@@ -138,7 +138,7 @@ export default function LandingPage() {
 
             {/* Right */}
             <div className="flex items-center gap-4">
-              <Link href="/dashboard" className="liquid-glass rounded-full px-6 py-2 text-white text-sm font-medium hover:bg-white/10 transition-colors cursor-pointer">
+              <Link href="/dashboard" className="liquid-glass rounded-full px-5 py-1.5 text-white text-sm font-medium hover:bg-white/10 transition-colors cursor-pointer">
                 Dashboard
               </Link>
             </div>

@@ -31,10 +31,10 @@ const Header = ({ user }) => {
 
   return (
     <>
-      <header className="fixed top-0 w-full z-50 px-4 py-4 md:py-6 pointer-events-none">
-        <nav className="liquid-glass rounded-full max-w-7xl mx-auto px-6 py-3 flex items-center justify-between pointer-events-auto">
+      <header className="fixed top-0 w-full z-50 px-4 py-2 md:py-4 pointer-events-none">
+        <nav className="liquid-glass rounded-full max-w-7xl mx-auto px-6 py-1.5 flex items-center justify-between pointer-events-auto">
           <Link href="/" className="flex items-center text-white">
-            <Globe className="w-6 h-6 mr-2 shrink-0" />
+            <Globe className="w-5 h-5 mr-2 shrink-0" />
             <span className="font-semibold text-lg hidden sm:inline">
               WorkWise
             </span>
@@ -45,36 +45,36 @@ const Header = ({ user }) => {
               <Link href="/chat">
                 <Button
                   variant="outline"
-                  className="hidden text-xs md:inline-flex items-center gap-2 hover:text-black hover:bg-white transition-all duration-300"
+                  className="hidden text-xs md:inline-flex items-center gap-2 hover:text-black hover:bg-white transition-all duration-300 h-8 px-3"
                 >
-                  <MessageSquare className="h-4 w-4" />
+                  <MessageSquare className="h-3.5 w-3.5" />
                   Live Chat
                 </Button>
-                <Button variant="ghost" className="md:hidden w-10 h-10 p-0">
+                <Button variant="ghost" className="md:hidden w-8 h-8 p-0">
                   <MessageSquare className="h-4 w-4" />
                 </Button>
               </Link>
               <Link href="/guidance">
                 <Button
                   variant="outline"
-                  className="hidden text-xs md:inline-flex items-center gap-2 hover:text-black hover:bg-white transition-all duration-300"
+                  className="hidden text-xs md:inline-flex items-center gap-2 hover:text-black hover:bg-white transition-all duration-300 h-8 px-3"
                 >
-                  <Video className="h-4 w-4" />
+                  <Video className="h-3.5 w-3.5" />
                   Video Sessions
                 </Button>
-                <Button variant="ghost" className=" md:hidden w-10 h-10 p-0">
+                <Button variant="ghost" className=" md:hidden w-8 h-8 p-0">
                   <Video className="h-4 w-4" />
                 </Button>
               </Link>
               <Link href="/dashboard">
                 <Button
                   variant="outline"
-                  className="hidden md:inline-flex text-xs items-center gap-2 hover:text-black hover:bg-white transition-all duration-300"
+                  className="hidden md:inline-flex text-xs items-center gap-2 hover:text-black hover:bg-white transition-all duration-300 h-8 px-3"
                 >
-                  <TrendingUp className="h-4 w-4" />
+                  <TrendingUp className="h-3.5 w-3.5" />
                   Industry Insights
                 </Button>
-                <Button variant="ghost" className="md:hidden w-10 h-10 p-0">
+                <Button variant="ghost" className="md:hidden w-8 h-8 p-0">
                   <TrendingUp className="h-4 w-4" />
                 </Button>
               </Link>
@@ -84,11 +84,11 @@ const Header = ({ user }) => {
                 <DropdownMenuTrigger asChild>
                   <Button
                     variant="outline"
-                    className="flex items-center gap-2 text-xs hover:text-black hover:bg-white transition-all duration-300"
+                    className="flex items-center gap-2 text-xs hover:text-black hover:bg-white transition-all duration-300 h-8 px-3"
                   >
-                    <StarsIcon className="h-4 w-4" />
+                    <StarsIcon className="h-3.5 w-3.5" />
                     <span className="hidden md:inline">Growth Tools</span>
-                    <ChevronDown className="h-4 w-4 md:ml-1" />
+                    <ChevronDown className="h-3.5 w-3.5 md:ml-1" />
                   </Button>
                 </DropdownMenuTrigger>
                 <DropdownMenuContent align="end" className="w-48">
